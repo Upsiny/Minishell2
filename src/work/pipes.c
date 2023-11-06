@@ -31,7 +31,7 @@ int		ft_pipes_create(t_data *data)
 	int	i;
 
 	data->nb_cmds = ft_count_list(data->st_cmd)
-	pp = ft_calloc(data->nb_cmds + 1, sizeof(*pp)));
+	pp = ft_calloc(data->nb_cmds + 1, sizeof(int *)));
 	if (!pp)
 	{
 		perror(NULL);
@@ -40,7 +40,7 @@ int		ft_pipes_create(t_data *data)
 	i = 0;
 	while (i < data->nb_cmds)
 	{
-		pp[i] = ft_calloc(2, sizeof(**pp));
+		pp[i] = ft_calloc(2, sizeof(int));
 		if (!pp[i])
 		{
 			perror(NULL);

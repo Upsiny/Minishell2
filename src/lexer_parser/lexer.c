@@ -19,7 +19,7 @@ void	implement_list(t_data *data, int type, int index, int start)
 
 //	if (!data->s_lex)
 //		data->s_lex = ft_calloc(sizeof(t_list), 1);
-	new = (t_list *)malloc(sizeof(t_list) * 1);
+	new = ft_calloc(sizeof(t_list), 1);
 	if (!new)
 		return ;
 	i = 0;

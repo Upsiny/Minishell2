@@ -37,7 +37,7 @@ char	*remove_double_char_quote(char *str, char c)
 	int		j;
 
 	i = ft_strlen(str) + 1;
-	new_line = ft_calloc(i, sizeof(*new_line));
+	new_line = ft_calloc(i, sizeof(char));
 	i = 0;
 	j = 0;
 	while (str[i])

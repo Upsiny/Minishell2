@@ -22,16 +22,17 @@ char	**ft_cpytab(char **tab)
 	i = 0;
 	if (!tab)
 		return (NULL);
-	while (tab[size] != NULL)
+	while (tab[size])
 		size++;
-	cpy = malloc(sizeof(char *) * (size + 1));
-	if (tab == NULL || !cpy)
+	cpy = ft_calloc(sizeof(char *), (size + 1));
+	if (!cpy)
 		return (NULL);
 	while (i < size)
 	{
+//		cpy[i] = ft_calloc(sizeof(char), ft_strlen(tab[i]));
 		cpy[i] = ft_strdup3(tab[i]);
 		i++;
 	}
-	cpy[size] = NULL;
+	cpy[i] = NULL;
 	return (cpy);
 }

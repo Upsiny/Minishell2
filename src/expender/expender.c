@@ -39,7 +39,7 @@ void	start_expend(t_data *data)//fait une liste de char** pour aider thomas a l'
 	tmp = data->s_lex;
 	j = 0;
 	i = ft_count_until_change(data->s_lex, data->index_cmd);
-	data->st_cmd->cmd = malloc(i + 1 * sizeof(char *));
+	data->st_cmd->cmd = malloc((i + 1) * sizeof(char *));
 	while (tmp->index < i)
 	{
 		data->st_cmd->cmd[j] = ft_strjoin(*data->st_cmd->cmd, tmp->content);

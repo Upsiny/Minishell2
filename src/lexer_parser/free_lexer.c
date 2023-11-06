@@ -18,10 +18,12 @@ void	ft_free_lst(t_data *data)
 	t_list	*tmp2;
 
 	tmp = data->s_lex;
+	if (!tmp)
+		return ;
 	while(tmp->next != NULL)
 	{
 		tmp2 = tmp;
-		free(tmp2);
 		tmp = tmp->next;
+		free(tmp2);
 	}
 }

@@ -11,13 +11,27 @@
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void	free_2d_arr(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
+}
+
 //ne pas oublier de stocker dans nb_cmds le nombre de cmds, sinon le builtin exit ne fonctionne pas pareil
 //bah fait le
 int	main(int ac, char **av, char **envp)
 {
 	t_data	*data;
 
-	(void)*av;
+	(void) av;
 	data = init_struct(envp);
 	if (ac != 1)
 		ft_error_msg("no arguments accepted");
@@ -31,18 +45,22 @@ int	main(int ac, char **av, char **envp)
 		add_history(data->prompt);
 		if (data->prompt == NULL)
 		{
+			free_2d_arr(data->cp_env);
+			free_2d_arr(data->cp_exp);
 			printf("exit\n");
-			exit(0);
+			exit(1);
 		}
 		init_lexer(data);
-		data->st_cmd->cmd = ft_split(data->prompt, ' '); //A supprimer, juste pour test builtins
+//		data->st_cmd->cmd = ft_split(data->prompt, ' '); //A supprimer, juste pour test builtins
 		if (!lexer_work(data))// Dans token type strings: supprimer les quotes (si circuit fermer)
 		{
 //			ft_chemaklist(data); // erreur dans s_lex, le premier maillon a un content vide
+//			print_list(data);
 //			if (!ft_check_lst(data)) // securiter a valider quqnd les free seront fait !
 //			{
 //				data->nb_cmds = 1; // pour exit, il faut indiquer que cest la seule cmds
-				redir_builtins_or_execve(data, data->st_cmd->cmd); // mettre tout la fin dans ces quotes
+//				printf("%s\n", data->st_cmd->cmd[0]);
+//				redir_builtins_or_execve(data, data->st_cmd->cmd); // mettre tout la fin dans ces quotes
 //				free_ptr(data->s_lex);
 //			}
 		}
@@ -53,6 +71,7 @@ int	main(int ac, char **av, char **envp)
 //		printf("3\n\n");
 		free(data->prompt);
 	}
-
 //	free_minishell(data);
+	free(data->cp_env);
+	free(data->cp_exp);
 }

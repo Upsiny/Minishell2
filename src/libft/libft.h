@@ -49,7 +49,7 @@ void			ft_putchar_fd(char c, int fd);
 void			ft_putstr_fd(char *s, int fd);
 void			ft_putendl_fd(char *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
-char			*ft_strdup3(const char *s1);
+char			*ft_strdup3(char *s1);
 void			*ft_calloc(size_t count, size_t size);
 char			*ft_itoa(int n);
 char			**ft_split(char const *s, char c);
@@ -85,5 +85,7 @@ size_t	ft_len(char *str);
 char	*ft_strdup(const char *s1);
 size_t	ft_lenline(char *str);
 char	*ft_fin(char *fin, char *reserve, int i);
+
+char	*ft_strcpy(char *dst, char *src);
 
 #endif

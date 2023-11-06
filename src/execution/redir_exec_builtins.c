@@ -115,8 +115,8 @@ void	redir_builtins_or_execve(t_data *data, char **cmd)
 		echo_builtin(cmd);
 	else if (ft_strcmp(cmd[0], "env") == 0)
 		env_builtin(data, cmd);
-	else if (ft_strcmp(cmd[0], "export") == 0)
-		export_builtin(data, cmd);
+//	else if (ft_strcmp(cmd[0], "export") == 0)
+//		export_builtin(data, cmd);
 	else if (ft_strcmp(cmd[0], "unset") == 0)
 		unset_builtin(data, cmd);
 	else

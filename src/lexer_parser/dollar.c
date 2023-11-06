@@ -41,6 +41,7 @@ void	replace_prompt(t_data *data, char *value, int start, int end)
 	}
 	last_part[i] = '\0';
 	new_prompt = ft_strdup3(first_part);
+	printf("new : %s\n", new_prompt);
 /*	if (!ft_strcmp(value, ""))
 		new_prompt = ft_strjoin(new_prompt, "");
 	else*/
@@ -84,7 +85,7 @@ void	get_dollar(t_data *data)
 			break ;
 	//	lexer_advance(data);
 	}
-	dol_value = malloc(sizeof(char) * j);
+	dol_value = malloc(sizeof(char) * (j + 1));
 	while (k < j)
 	{
 		dol_value[k - 1] = data->prompt[i + 1];
@@ -95,6 +96,6 @@ void	get_dollar(t_data *data)
 //	printf("valeur dollar : %s\n", dol_value);
 	replace_prompt(data, search_in_env(data, dol_value), data->lexer_check, data->lexer_check + j);
 	//printf("%s\n", search_in_env(data, dol_value)); //remplacer par un autre getenv
-	lexer_advance(data);
+//	lexer_advance(data);
 	free(dol_value);
 }
