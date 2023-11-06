@@ -62,30 +62,33 @@ void	ft_execve(t_data *data, char **all_path, char **pathcmd, char **cmd)
 {
 	char	*gd_path;
 	int		i;
-//	int		z;
+	pid_t	p;
 
+	(void) cmd;
 	i = 0;
-//	z = 0;
-	gd_path = NULL;
+	p = fork();
 	while (all_path[i])
 	{
 		gd_path = ft_strjoin(all_path[i], pathcmd[0]);
 		if (access(gd_path, R_OK) == 0)
 		{
-			if (execve(gd_path, pathcmd, data->cp_env) == -1)
+			if (p == -1)
 			{
-				perror("Execve : ");
+				perror("Fork");
 				exit(EXIT_FAILURE);
 			}
+			else if (p == 0)
+			{
+				if (execve(gd_path, pathcmd, data->cp_env) == -1)
+				{
+					perror("Execve : ");
+					exit(EXIT_FAILURE);
+				}
+			}
 		}
-		else
-			i++;
+		i++;
 		free(gd_path);
-//		z++;
 	}
-	(void)cmd;
-	//if (z == i)
-	//	aff_errcmd(cmd);
 }
 
 void	ft_execution(t_data *data, char **all_path, char **pathcmd, char **cmd)

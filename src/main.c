@@ -43,12 +43,16 @@ int	main(int ac, char **av, char **envp)
 //			{
 //				data->nb_cmds = 1; // pour exit, il faut indiquer que cest la seule cmds
 				redir_builtins_or_execve(data, data->st_cmd->cmd); // mettre tout la fin dans ces quotes
-		//		free_ptr(data->s_lex);
+//				free_ptr(data->s_lex);
 //			}
 		}
+//		printf("1\n\n");
 		ft_free_lst(data);
+//		printf("2\n\n");
 		free(data->content_here);
+//		printf("3\n\n");
 		free(data->prompt);
 	}
+
 //	free_minishell(data);
 }

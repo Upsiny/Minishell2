@@ -14,14 +14,14 @@
 
 void	ft_free_lst(t_data *data)
 {
-	t_list	*next;
+	t_list	*tmp;
+	t_list	*tmp2;
 
-	next = data->s_lex;
-	while(next)
+	tmp = data->s_lex;
+	while(tmp->next != NULL)
 	{
-		next = data->s_lex->next;
-		free(data->s_lex->content);
-		free(data->s_lex);
-		data->s_lex = next;
+		tmp2 = tmp;
+		free(tmp2);
+		tmp = tmp->next;
 	}
 }
