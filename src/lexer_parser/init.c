@@ -60,7 +60,7 @@ t_data	*init_struct(char **envp)
 	if (envp[0] == NULL)
 		printf("No envp. get only new pwd and the old.");
 	else
-		data->cp_env = envp;
+		data->cp_env = ft_tabcpy(envp);
 	data->cp_exp = envp;
 	data->cp_exp = order_exp(data->cp_exp);
 	data->content_here = NULL;

@@ -81,7 +81,6 @@ int		retour_a_la_ligne(char *reserve);
 char	*ft_nettoyage(char *reserve);
 char	*ft_join(char *s1, char *s2);
 char	*ft_dup(char *s1);
-size_t	ft_len(char *str);
 char	*ft_strdup(const char *s1);
 size_t	ft_lenline(char *str);
 char	*ft_fin(char *fin, char *reserve, int i);

@@ -62,6 +62,6 @@ char *get_env_value(char **env, const char *var)
 
 void get_pwd(t_data *data)
 {
-    data->pwd = ft_strdup3(get_env_value(data->cp_env, "PWD="));
-    data->oldpwd = ft_strdup3(get_env_value(data->cp_env, "OLDPWD="));
+    data->pwd = get_env_value(data->cp_env, "PWD=");
+    data->oldpwd = get_env_value(data->cp_env, "OLDPWD=");
 }

@@ -77,6 +77,7 @@ typedef struct s_data
 	char	*pwd;
 	char	*oldpwd;
 	int		ret_err; //rendre cette variable en globale merci helian on est oblige apparement histoire de signaux
+	char	*tmp_dollar;
 }	t_data;
 
 //////////// Lexer_Parser //////////////////

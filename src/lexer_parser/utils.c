@@ -66,19 +66,26 @@ char	*search_in_env(t_data *shell, char *var)
 {
 	int		idx;
 	char	**split;
+	char	*res;
 
 	idx = 0;
 	while (shell->cp_env[idx])
 	{
 		split = ft_split(shell->cp_env[idx], '=');
 		if (!ft_strcmp(split[0], var))
-			return (split[1]);
+		{
+			res = ft_strdup3(split[1]);
+			free_2d_arr(split);
+			free(var);
+			return (res);
+		}
+		free_2d_arr(split);
 		idx++;
 	}
 //	if (to_append)
 //		return (append('$', var));
 //	else
-		return (var);
+	return (var);
 }
 
 //char	*search_in_env(t_data *data, char *str)

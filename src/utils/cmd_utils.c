@@ -20,7 +20,10 @@ char	**build_cmd_from_lexer(t_data *data)
 	int		idx;
 
 	if (!(data->s_lex))
+	{
+		free_ptr(data->s_lex);
 		return (NULL);
+	}
 	el = data->s_lex->next;
 	idx = 0;
 	while (el)
@@ -30,7 +33,10 @@ char	**build_cmd_from_lexer(t_data *data)
 	}
 	cmd = ft_calloc(sizeof(char *), args + 1);
 	if (!cmd)
+	{
+		free(cmd);
 		return (NULL);
+	}
 	el = data->s_lex->next;
 	while (el)
 	{

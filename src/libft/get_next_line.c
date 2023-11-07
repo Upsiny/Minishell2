@@ -12,6 +12,16 @@
 
 #include "libft.h"
 
+size_t	ft_len(char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
 char	*ft_fin(char *fin, char *reserve, int i)
 {
 	int	j;

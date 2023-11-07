@@ -12,87 +12,87 @@
 
 #include "libft.h"
 
-static int	ft_diviser(char const *s, char c)
+static int	count_tabs(const char *s, char c)
+{
+	int		i;
+	int		tabs;
+
+	i = 0;
+	tabs = 0;
+	while (s[i])
+	{
+		if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
+			tabs++;
+		i++;
+	}
+	return (tabs);
+}
+
+static int	word_len(const char *s, char c)
+{
+	int		i;
+	int		len;
+
+	i = 0;
+	len = 0;
+	while (s[i] != c && s[i] != '\0')
+	{
+		i++;
+		len++;
+	}
+	return (len);
+}
+
+static void	*freememory(char **tableau, int tabs)
 {
 	int	i;
 
 	i = 0;
-	while (*s)
+	while (i < tabs)
 	{
-		while (*s && *s == c)
-			s++;
-		if (*s && *s != c)
-		{
-			i++;
-			while (*s && *s != c)
-				s++;
-		}
+		free(tableau[i]);
+		i++;
 	}
-	return (i);
+	free(tableau);
+	return (NULL);
 }
 
-static char	*ft_copy(char const *s, char c)
+static char	**creat_new_tab(const char *s, int tabs, char c, char **newtab)
 {
-	char	*str;
 	int		i;
 	int		j;
+	int		len;
 
-	i = 0;
-	j = 0;
-	while (s[i] && s[i] != c)
-		i++;
-	str = malloc(sizeof(*str) * (i + 1));
-	if (!str)
-		return (NULL);
-	while (s[j] && j < i)
+	i = -1;
+	while (++i < tabs)
 	{
-		str[j] = s[j];
-		j++;
+		while (*s == c)
+			s++;
+		len = word_len(s, c);
+		newtab[i] = ft_calloc(sizeof(char), (len + 1));
+		if (!newtab[i])
+			return (freememory(newtab, i));
+		j = 0;
+		while (j < len)
+			newtab[i][j++] = *s++;
+		newtab[i][j] = '\0';
 	}
-	str[j] = '\0';
-	return (str);
+	newtab[i] = NULL;
+	return (newtab);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(const char *s, char c)
 {
-	int		cut;
-	char	**tab;
-	int		i;
+	char	**newtab;
+	int		tabs;
 
 	if (!s)
 		return (NULL);
-	cut = ft_diviser(s, c);
-	tab = malloc(sizeof(*tab) * (cut + 1));
-	if (!tab)
+	tabs = count_tabs(s, c);
+	newtab = ft_calloc(sizeof(char *), (tabs + 1));
+	if (!newtab)
 		return (NULL);
-	i = 0;
-	while (*s)
-	{
-		while (*s && *s == c)
-			s++;
-		if (*s && *s != c)
-		{
-			tab[i++] = ft_copy(s, c);
-			while (*s && *s != c)
-				s++;
-		}
-	}
-	tab[i] = NULL;
-	return (tab);
+	newtab = creat_new_tab(s, tabs, c, newtab);
+	return (newtab);
 }
-/*#include <stdio.h>
-int main()
-{
-	char	**s;
-	int		i;
-	char	*str;
 
-	i = 0;
-	str = "1111Je11111chante1dans11la11salle1de1111bain111";
-	s = ft_split(str, '1');
-	while (s[i])
-	{
-		printf("%s\n", s[i]);
-		i++;
-	}
-}*/

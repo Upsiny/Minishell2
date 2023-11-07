@@ -50,11 +50,12 @@ void	echo_builtin(char **cmd)
 	int	i;
 
 	i = 1;
+//	printf("%s\n", cmd[1]);
 	if (!cmd[1] || cmd[1] == NULL || cmd[1][0] == '\0')
-		{
-			printf("\n");
-			return ;
-		}
+	{
+		printf("\n");
+		return ;
+	}
 	if ((ft_strncmp((cmd[1]), "-n", 2)) == 0 && checker_n(cmd[1]) == 1)
 		check_option(cmd);
 	else if (ft_strlen(cmd[0]) == 4)

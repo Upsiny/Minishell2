@@ -32,7 +32,7 @@ char	*ft_strdup3(char *src)
 	int		size;
 
 	size = ft_strlen(src);
-	copy = malloc(sizeof(char) * (size + 1));
+	copy = ft_calloc(sizeof(char), (size + 1));
 	if (!copy)
 	{
 		free(copy);

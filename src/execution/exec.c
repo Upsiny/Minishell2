@@ -62,34 +62,37 @@ void	ft_execve(t_data *data, char **all_path, char **pathcmd, char **cmd)
 {
 	char	*gd_path;
 	int		i;
-//	pid_t	p;
+	pid_t	p;
+	int		status;
 
 	(void) cmd;
 	i = 0;
-//	p = fork();
+	p = fork();
 	while (all_path[i])
 	{
 		gd_path = ft_strjoin(all_path[i], pathcmd[0]);
 		if (access(gd_path, R_OK) == 0)
 		{
-			if (execve(gd_path, pathcmd, data->cp_env) == -1)
-			{
-				perror("Execve : ");
-				exit(EXIT_FAILURE);
-			}
-//			if (p == -1)
+//			if (execve(gd_path, pathcmd, data->cp_env) == -1)
 //			{
-//				perror("Fork");
+//				perror("Execve : ");
 //				exit(EXIT_FAILURE);
 //			}
-//			else if (p == 0)
-//			{
-//				if (execve(gd_path, pathcmd, data->cp_env) == -1)
-//				{
-//					perror("Execve : ");
-//					exit(EXIT_FAILURE);
-//				}
-//			}
+			if (p == -1)
+			{
+				perror("Fork");
+				exit(EXIT_FAILURE);
+			}
+			else if (p == 0)
+			{
+				if (execve(gd_path, pathcmd, data->cp_env) == -1)
+				{
+					perror("Execve : ");
+					exit(EXIT_FAILURE);
+				}
+			}
+			else
+				wait(&status);
 		}
 		i++;
 		free(gd_path);

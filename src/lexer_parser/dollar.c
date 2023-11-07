@@ -23,7 +23,17 @@ void	replace_prompt(t_data *data, char *value, int start, int end)
 	i = 0;
 	j = end;
 	first_part = malloc((start + 1) * sizeof(char));
+	if (!first_part)
+	{
+		free(first_part);
+		return ;
+	}
 	last_part = malloc((ft_strlen(data->prompt) - end + 1) * sizeof(char));
+	if (!last_part)
+	{
+		free(last_part);
+		return ;
+	}
 	if (!value)
 		value = "";
 	while (i < start)
@@ -40,19 +50,16 @@ void	replace_prompt(t_data *data, char *value, int start, int end)
 		j++;
 	}
 	last_part[i] = '\0';
-	new_prompt = ft_strdup3(first_part);
-	printf("new : %s\n", new_prompt);
-/*	if (!ft_strcmp(value, ""))
-		new_prompt = ft_strjoin(new_prompt, "");
-	else*/
-	new_prompt = ft_strjoin(new_prompt, value);
-	new_prompt = ft_strjoin(new_prompt, last_part);
-//	printf("first part : %s\n", first_part);
-	printf("new_promp : %s\n", new_prompt);
+	new_prompt = ft_strjoin(first_part, value);
+	free(first_part);
+	data->tmp_dollar = ft_strdup3(new_prompt);
+	free(new_prompt);
+	new_prompt = ft_strjoin(data->tmp_dollar, last_part);
+	free(last_part);
+	free(data->tmp_dollar);
+	free(data->prompt);
 	data->prompt = ft_strdup3(new_prompt);
 	free(new_prompt);
-	free(first_part);
-	free(last_part);
 }
 
 int	ft_isinside(char c)
@@ -75,6 +82,8 @@ void	get_dollar(t_data *data)
 	int		j;
 	int		k;
 	char	*dol_value;
+	char	*split;
+
 	i = data->lexer_check;
 	j = 0;
 	k = 1;
@@ -86,6 +95,11 @@ void	get_dollar(t_data *data)
 	//	lexer_advance(data);
 	}
 	dol_value = malloc(sizeof(char) * (j + 1));
+	if (!dol_value)
+	{
+		free(dol_value);
+		return ;
+	}
 	while (k < j)
 	{
 		dol_value[k - 1] = data->prompt[i + 1];
@@ -94,8 +108,14 @@ void	get_dollar(t_data *data)
 	}
 	dol_value[k - 1] = '\0';
 //	printf("valeur dollar : %s\n", dol_value);
-	replace_prompt(data, search_in_env(data, dol_value), data->lexer_check, data->lexer_check + j);
+	split = search_in_env(data, dol_value);
+	if (!split)
+	{
+		free(split);
+		return ;
+	}
+	replace_prompt(data, split, data->lexer_check, data->lexer_check + j);
 	//printf("%s\n", search_in_env(data, dol_value)); //remplacer par un autre getenv
 //	lexer_advance(data);
-	free(dol_value);
+	free(split);
 }

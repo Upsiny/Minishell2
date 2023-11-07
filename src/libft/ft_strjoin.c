@@ -14,28 +14,27 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
+	char	*str;
 	int		i;
 	int		j;
-	char	*tot;
 
-	i = 0;
-	j = 0;
-	if (s1 == NULL || s2 == NULL)
+	if (!s1 || !s2)
 		return (NULL);
-	tot = ft_calloc (sizeof (char), (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!tot)
-		return (NULL);
-	while (s1[i])
+	str = ft_calloc(sizeof(char), (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!str)
 	{
-		tot[i] = s1[i];
-		i++;
+		free(str);
+		return (NULL);
 	}
+	ft_strlcpy(str, s1, ft_strlen(s1) + 1);
+	i = ft_strlen(s1);
+	j = 0;
 	while (s2[j])
 	{
-		tot[i] = s2[j];
+		str[i] = s2[j];
 		i++;
 		j++;
 	}
-	tot[i] = '\0';
-	return (tot);
+	str[i] = '\0';
+	return (str);
 }

@@ -17,6 +17,7 @@ void	implement_list(t_data *data, int type, int index, int start)
 	t_list	*new;
 	int		i;
 
+	// TODO Leaks sur cette merde
 	new = malloc(sizeof(t_list));
 	if (!new)
 	{
@@ -27,7 +28,7 @@ void	implement_list(t_data *data, int type, int index, int start)
 	if (!(new->content))
 	{
 		free(new->content);
-		free(new);
+//		free(new);
 		return ;
 	}
 	i = 0;
@@ -40,8 +41,8 @@ void	implement_list(t_data *data, int type, int index, int start)
 	new->content[i] = '\0';
 	new->token_type = type;
 	new->index = data->index_lexer;
-	new->next = NULL;
 	ft_lstadd_back(&data->s_lex, new);
+	new->next = NULL;
 }
 
 void	lexer_advance(t_data *data)
@@ -63,8 +64,6 @@ int	lexer_work(t_data *data)
 			if (ft_lexer_quotes(data))
 				return (1);
 		}
-		else if (!ft_isspace(data->lexer_char) && data->prompt[data->lexer_check + 1])
-			lexer_advance(data);
 		/*else if (data->lexer_char == '$')
 		{
 			printf("coucou\n\n");
@@ -80,6 +79,8 @@ int	lexer_work(t_data *data)
 			if (ft_lexer_pipe(data))
 				return (1);
 		}
+		else if (!ft_isspace(data->lexer_char) && data->prompt[data->lexer_check + 1])
+			lexer_advance(data);
 		else if (data->lexer_char)
 		{
 			if (ft_lexer_alpha(data))
@@ -97,4 +98,5 @@ void	init_lexer(t_data *data)
 	data->index_lexer = 0;
 	data->lexer_check = 0;
 	data->lexer_char = data->prompt[data->lexer_check];
+	data->tmp_dollar = NULL;
 }

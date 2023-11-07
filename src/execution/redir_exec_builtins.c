@@ -105,6 +105,7 @@ void	redir_builtins_or_execve(t_data *data, char **args)
 	char	**full_cmd;
 
 	full_cmd = add_cmd_before_args(data, args);
+//	printf("%s\n", full_cmd[1]);
 //	verif_cmd_struct(cmd);
 	if (!(data->s_lex))
 			return ;

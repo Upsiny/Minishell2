@@ -48,7 +48,7 @@ char	*ft_join(char *s1, char *s2)
 		s1 = ft_strdup("");
 	if (s1 == NULL || s2 == NULL)
 		return (NULL);
-	tot = malloc(sizeof(char) * (ft_len(s1) + ft_len(s2) + 1));
+	tot = malloc(sizeof(char) * (ft_strlen(s1) + ft_len(s2) + 1));
 	if (!tot)
 	{
 		free(s1);
@@ -75,6 +75,7 @@ char	*ft_dup(char *s1)
 	if (!str)
 	{
 		free(s1);
+		free(str);
 		return (NULL);
 	}
 	while (s1[i] != '\n' && s1[i])

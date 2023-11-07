@@ -56,7 +56,6 @@ int	main(int ac, char **av, char **envp)
 			exit(1);
 		}
 		init_lexer(data);
-		cmd = build_cmd_from_lexer(data);
 		if (!lexer_work(data))// Dans token type strings: supprimer les quotes (si circuit fermer)
 		{
 //			ft_chemaklist(data); // erreur dans s_lex, le premier maillon a un content vide
@@ -65,14 +64,15 @@ int	main(int ac, char **av, char **envp)
 //			{
 //				data->nb_cmds = 1; // pour exit, il faut indiquer que cest la seule cmds
 //				printf("%s\n", data->st_cmd->cmd[0]);
+				cmd = build_cmd_from_lexer(data);
 				redir_builtins_or_execve(data, cmd); // mettre tout la fin dans ces quotes
-				free(data->s_lex);
+//				free(data->s_lex);
 //			}
 		}
 
 		free(data->content_here);
 		free(data->prompt);
-		free_2d_arr(cmd);
+		free(cmd);
 	}
 	ft_free_lst(data);
 	free(data->cp_env);
