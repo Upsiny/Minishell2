@@ -36,7 +36,7 @@ void	ft_heredoc(t_list *tmp, t_data *data)
 			if (!ft_strcmp(heredoc, tmp2->next->content))
 				break ;
 			if (!data->content_here)
-				data->content_here = ft_strdup3(heredoc);
+				data->content_here = heredoc;
 			else
 				data->content_here = ft_strjoin(data->content_here, heredoc);
 			data->content_here = ft_strjoin(data->content_here, "\n");

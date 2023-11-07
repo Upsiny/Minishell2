@@ -70,7 +70,7 @@ int	main(int ac, char **av, char **envp)
 		init_lexer(data);
 		if (!lexer_work(data))// Dans token type strings: supprimer les quotes (si circuit fermer)
 		{
-//			ft_chemaklist(data); // erreur dans s_lex, le premier maillon a un content vide
+			ft_check_lst(data); // erreur dans s_lex, le premier maillon a un content vide
 //			print_list(data);
 //			if (!ft_check_lst(data)) // securiter a valider quqnd les free seront fait !
 //			{
