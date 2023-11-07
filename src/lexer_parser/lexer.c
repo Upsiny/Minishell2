@@ -17,25 +17,31 @@ void	implement_list(t_data *data, int type, int index, int start)
 	t_list	*new;
 	int		i;
 
-//	if (!data->s_lex)
-//		data->s_lex = ft_calloc(sizeof(t_list), 1);
-	new = ft_calloc(sizeof(t_list), 1);
+	new = malloc(sizeof(t_list));
 	if (!new)
+	{
+		free(new);
 		return ;
+	}
+	new->content = malloc(sizeof(char ) * (index + 1));
+	if (!(new->content))
+	{
+		free(new->content);
+		free(new);
+		return ;
+	}
 	i = 0;
-	new->content = ft_calloc(sizeof(char), index + 1);
-	if (!new->content)
-		return ;
 	while (i < index && data->prompt[start])
 	{
 		new->content[i] = data->prompt[start];
 		i++;
 		start++;
 	}
+	new->content[i] = '\0';
 	new->token_type = type;
 	new->index = data->index_lexer;
+	new->next = NULL;
 	ft_lstadd_back(&data->s_lex, new);
-	new->next = (NULL);
 }
 
 void	lexer_advance(t_data *data)

@@ -161,5 +161,10 @@ int		ft_tab_len(char **tab);
 char	**ft_cpytab(char **tab);
 char	*search_in_env(t_data *data, char *str);
 char	*ft_strndup(const char *src, size_t n);
+char	**build_cmd_from_lexer(t_data *data);
+char	*ft_strcat(char *dest, char *src);
+char	**add_cmd_before_args(t_data *data, char **args);
+void	free_2d_arr(char **arr);
+char	**ft_2d_strdup(char **src);
 
 #endif

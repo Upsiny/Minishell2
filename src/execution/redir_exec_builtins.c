@@ -100,25 +100,29 @@ char	**verif_cmd_struct(char **cmd)
 }
 
 // envoie une commande soit dans builtins, soit dans execve
-void	redir_builtins_or_execve(t_data *data, char **cmd)
+void	redir_builtins_or_execve(t_data *data, char **args)
 {
+	char	**full_cmd;
+
+	full_cmd = add_cmd_before_args(data, args);
 //	verif_cmd_struct(cmd);
-	if (cmd[0] == NULL)
+	if (!(data->s_lex))
 			return ;
-	if (ft_strcmp(cmd[0], "cd") == 0)
-		cd_builtin(data, cmd);
-	else if (ft_strcmp(cmd[0], "pwd") == 0)// a modifier en utilisant cp_env;
-		pwd_builtin(data, cmd);
-	else if (ft_strcmp(cmd[0], "exit") == 0)
-		exit_builtin(data, cmd);
-	else if (ft_strcmp(cmd[0], "echo") == 0)
-		echo_builtin(cmd);
-	else if (ft_strcmp(cmd[0], "env") == 0)
-		env_builtin(data, cmd);
-//	else if (ft_strcmp(cmd[0], "export") == 0)
-//		export_builtin(data, cmd);
-	else if (ft_strcmp(cmd[0], "unset") == 0)
-		unset_builtin(data, cmd);
+	if (ft_strcmp(data->s_lex->content, "cd") == 0)
+		cd_builtin(data, full_cmd);
+	else if (ft_strcmp(data->s_lex->content, "pwd") == 0)// a modifier en utilisant cp_env;
+		pwd_builtin(data, full_cmd);
+	else if (ft_strcmp(data->s_lex->content, "exit") == 0)
+		exit_builtin(data, full_cmd);
+	else if (ft_strcmp(data->s_lex->content, "echo") == 0)
+		echo_builtin(full_cmd);
+	else if (ft_strcmp(data->s_lex->content, "env") == 0)
+		env_builtin(data, full_cmd);
+	else if (ft_strcmp(data->s_lex->content, "export") == 0)
+		export_builtin(data, full_cmd);
+	else if (ft_strcmp(data->s_lex->content, "unset") == 0)
+		unset_builtin(data, full_cmd);
 	else
-		ft_set_path_and_execve(data, cmd);
+		ft_set_path_and_execve(data, full_cmd);
+	free_2d_arr(full_cmd);
 }

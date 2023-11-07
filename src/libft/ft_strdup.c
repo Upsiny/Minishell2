@@ -17,7 +17,7 @@ char	*ft_strcpy(char *dst, char *src)
 	int		i;
 
 	i = 0;
-	while (src[i] != '\0')
+	while (src[i])
 	{
 		dst[i] = src[i];
 		i++;
@@ -29,11 +29,15 @@ char	*ft_strcpy(char *dst, char *src)
 char	*ft_strdup3(char *src)
 {
 	char	*copy;
+	int		size;
 
-	copy = malloc(sizeof(char) * (ft_strlen(src) + 1));
-	if (copy == NULL)
+	size = ft_strlen(src);
+	copy = malloc(sizeof(char) * (size + 1));
+	if (!copy)
+	{
+		free(copy);
 		return (NULL);
+	}
 	ft_strcpy(copy, src);
 	return (copy);
 }
-

@@ -21,17 +21,20 @@ char	**ft_tabcpy(char **tab)
 
 	i = 0;
 	j = 0;
-	if (!tab)
+	if (!tab || !(tab[0]))
 		return (NULL);
 	while (tab[j])
 		j++;
-	tmp = ft_calloc(sizeof(char *), (j + 1));
+	tmp = malloc(sizeof(char *) * (j + 1));
 //	tmp[i] = malloc(sizeof(char) * (ft_strlen(tab[i]) + 1));
 	if (!tmp)
+	{
+		free_2d_arr(tmp);
 		return (NULL);
+	}
 	while (tab[i])
 	{
-		tmp[i] = strdup(tab[i]);
+		tmp[i] = ft_strdup3(tab[i]);
 		i++;
 	}
 	tmp[i] = NULL;
@@ -44,15 +47,21 @@ t_data	*init_struct(char **envp)
 
 	data = malloc(sizeof(t_data));
 	if (!data)
+	{
+//		free(data);
 		ft_error_msg("malloc error");
-	data->st_cmd = malloc(sizeof(data->st_cmd));
+	}
+	data->st_cmd = malloc(sizeof(t_cmd));
 	if (!data->st_cmd)
+	{
+//		free(data->st_cmd);
 		ft_error_msg("malloc error");
+	}
 	if (envp[0] == NULL)
 		printf("No envp. get only new pwd and the old.");
 	else
-		data->cp_env = ft_tabcpy(envp);
-	data->cp_exp = ft_tabcpy(data->cp_env);
+		data->cp_env = envp;
+	data->cp_exp = envp;
 	data->cp_exp = order_exp(data->cp_exp);
 	data->content_here = NULL;
 //	int i = 0;

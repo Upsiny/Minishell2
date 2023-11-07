@@ -30,7 +30,8 @@ char	**init_cmd(char **cmd)
 {
 	char	**pathcmd;
 	char	*tmp;
-	pathcmd = ft_cpytab(cmd);
+
+	pathcmd = ft_tabcpy(cmd);
 	tmp = ft_strjoin("/", pathcmd[0]);
 	free(pathcmd[0]);
 	pathcmd[0] = ft_strdup(tmp);
@@ -62,7 +63,8 @@ void	ft_set_path_and_execve(t_data *data, char **cmd)
 	if (all_path == NULL || cmd[0][0] == '/')
 	{
 		data->ret_err = 127;
-		ft_print_error_msg3("minishell: ", cmd[0], ": No such file or directory\n");
+		ft_print_error_msg3("minishell: ", data->s_lex->content,
+							": No such file or directory\n");
 		free_tab(pathcmd);
 		return;
 	}

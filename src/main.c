@@ -17,6 +17,8 @@ void	free_2d_arr(char **arr)
 	int	i;
 
 	i = 0;
+	if (!arr)
+		return ;
 	while (arr[i])
 	{
 		free(arr[i]);
@@ -30,13 +32,16 @@ void	free_2d_arr(char **arr)
 int	main(int ac, char **av, char **envp)
 {
 	t_data	*data;
+	char	**cmd;
 
 	(void) av;
 	data = init_struct(envp);
 	if (ac != 1)
 		ft_error_msg("no arguments accepted");
 	if (!data)
+	{
 		ft_error_msg("Malloc Error");
+	}
 	ft_signaux();
 	while (1)
 	{
@@ -45,13 +50,13 @@ int	main(int ac, char **av, char **envp)
 		add_history(data->prompt);
 		if (data->prompt == NULL)
 		{
-			free_2d_arr(data->cp_env);
-			free_2d_arr(data->cp_exp);
+//			free_2d_arr(data->cp_env);
+//			free_2d_arr(data->cp_exp);
 			printf("exit\n");
 			exit(1);
 		}
 		init_lexer(data);
-//		data->st_cmd->cmd = ft_split(data->prompt, ' '); //A supprimer, juste pour test builtins
+		cmd = build_cmd_from_lexer(data);
 		if (!lexer_work(data))// Dans token type strings: supprimer les quotes (si circuit fermer)
 		{
 //			ft_chemaklist(data); // erreur dans s_lex, le premier maillon a un content vide
@@ -60,18 +65,16 @@ int	main(int ac, char **av, char **envp)
 //			{
 //				data->nb_cmds = 1; // pour exit, il faut indiquer que cest la seule cmds
 //				printf("%s\n", data->st_cmd->cmd[0]);
-//				redir_builtins_or_execve(data, data->st_cmd->cmd); // mettre tout la fin dans ces quotes
-//				free_ptr(data->s_lex);
+				redir_builtins_or_execve(data, cmd); // mettre tout la fin dans ces quotes
+				free(data->s_lex);
 //			}
 		}
-//		printf("1\n\n");
-		ft_free_lst(data);
-//		printf("2\n\n");
+
 		free(data->content_here);
-//		printf("3\n\n");
 		free(data->prompt);
+		free_2d_arr(cmd);
 	}
-//	free_minishell(data);
+	ft_free_lst(data);
 	free(data->cp_env);
 	free(data->cp_exp);
 }

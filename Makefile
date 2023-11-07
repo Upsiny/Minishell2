@@ -48,6 +48,7 @@ SRCS    	=	src/main.c							\
 				src/utils/ft_strndup.c				\
 				src/utils/tab_len.c					\
 				src/utils/ft_cpytab.c				\
+				src/utils/cmd_utils.c				\
 
 OBJS    	=	${SRCS:.c=.o}
 

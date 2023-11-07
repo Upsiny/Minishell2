@@ -19,12 +19,7 @@ int	ft_tab_len(char **tab)
 	i = 0;
 	if (!tab)
 		return (0);
-	else
-	{
-		while (tab[i])
-		{
-			i++;
-		}
-	}
+	while (tab[i])
+		i++;
 	return (i);
 }
