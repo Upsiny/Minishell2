@@ -12,6 +12,18 @@
 
 #include "../includes/minishell.h"
 
+void	free_list(t_list *list)
+{
+	t_list *tmp;
+
+	while (list)
+	{
+		tmp = list;
+		list = list->next;
+		free(tmp);
+	}
+}
+
 void	free_2d_arr(char **arr)
 {
 	int	i;
@@ -66,7 +78,7 @@ int	main(int ac, char **av, char **envp)
 //				printf("%s\n", data->st_cmd->cmd[0]);
 				cmd = build_cmd_from_lexer(data);
 				redir_builtins_or_execve(data, cmd); // mettre tout la fin dans ces quotes
-//				free(data->s_lex);
+				free_list(data->s_lex);
 //			}
 		}
 

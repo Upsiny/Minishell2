@@ -17,7 +17,6 @@ void	implement_list(t_data *data, int type, int index, int start)
 	t_list	*new;
 	int		i;
 
-	// TODO Leaks sur cette merde
 	new = malloc(sizeof(t_list));
 	if (!new)
 	{
