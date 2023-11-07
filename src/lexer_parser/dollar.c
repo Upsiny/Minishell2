@@ -22,7 +22,7 @@ void	replace_prompt(t_data *data, char *value, int start, int end)
 
 	i = 0;
 	j = end;
-	first_part = malloc(start + 1 * sizeof(char));
+	first_part = malloc((start + 1) * sizeof(char));
 	last_part = malloc((ft_strlen(data->prompt) - end + 1) * sizeof(char));
 	if (!value)
 		value = "";
