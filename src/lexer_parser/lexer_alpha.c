@@ -44,8 +44,11 @@ int	ft_lexer_alpha(t_data *data)
 //			lexer_advance(data);
 			get_dollar(data);
 		}
-		i++;
-		lexer_advance(data);
+		if (data->prompt[data->lexer_check] != '$' && data->prompt[data->lexer_check])
+		{
+			i++;
+			lexer_advance(data);
+		}
 	}
 	implement_list(data, TOKEN_STRING, i, j);
 	data->index_lexer++;

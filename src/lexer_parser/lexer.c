@@ -63,8 +63,13 @@ int	lexer_work(t_data *data)
 			if (ft_lexer_quotes(data))
 				return (1);
 		}
-		else if (data->lexer_char == '$')
+		else if (!ft_isspace(data->lexer_char) && data->prompt[data->lexer_check + 1])
+			lexer_advance(data);
+		/*else if (data->lexer_char == '$')
+		{
+			printf("coucou\n\n");
 			get_dollar(data);
+		}*/
 		if (data->lexer_char == '<' || data->lexer_char == '>')
 		{
 			if (ft_lexer_redir(data))
@@ -75,8 +80,6 @@ int	lexer_work(t_data *data)
 			if (ft_lexer_pipe(data))
 				return (1);
 		}
-		else if (!ft_isspace(data->lexer_char))
-			lexer_advance(data);
 		else if (data->lexer_char)
 		{
 			if (ft_lexer_alpha(data))

@@ -85,7 +85,7 @@ int	ft_double_quotes(t_data *data)
 		while (data->prompt[data->lexer_check] != '\"')
 		{
 		//	printf("%c, %d\n", data->prompt[data->lexer_check], data->lexer_check);
-			if (data->prompt[data->lexer_check] == '$')
+			if (data->prompt[data->lexer_check] == '$' && data->prompt[data->lexer_check - 1] != '$')
 				get_dollar(data);
 			else
 				lexer_advance(data);
