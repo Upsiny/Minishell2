@@ -31,7 +31,7 @@ char	**ft_tabcpy(char **tab)
 		return (NULL);
 	while (tab[i])
 	{
-		tmp[i] = strdup(tab[i]);
+		tmp[i] = ft_strdup3(tab[i]);
 		i++;
 	}
 	tmp[i] = NULL;
