@@ -20,7 +20,7 @@ char	*recup_pathexec(t_data *data)
 	while (data->cp_env[i])
 	{
 		if (ft_strncmp(data->cp_env[i], "PATH=", 5) == 0)
-			return ft_strdup3(data->cp_env[i] + 5);
+			return (ft_strdup3(data->cp_env[i] + 5));
 		i++;
 	}
 	return (NULL);
@@ -43,9 +43,10 @@ char	**recup_path(t_data *data)
 {
 	char	*b_path;
 	char	**all_path;
+
 	b_path = recup_pathexec(data);
 	all_path = NULL;
-	if (b_path != NULL)
+	if (b_path)
 	{
 		all_path = ft_split(b_path, ':');
 		free(b_path);
@@ -64,9 +65,9 @@ void	ft_set_path_and_execve(t_data *data, char **cmd)
 	{
 		data->ret_err = 127;
 		ft_print_error_msg3("minishell: ", data->s_lex->content,
-							": No such file or directory\n");
+			": No such file or directory\n");
 		free_tab(pathcmd);
-		return;
+		return ;
 	}
 	ft_execution(data, all_path, pathcmd, cmd);
 }

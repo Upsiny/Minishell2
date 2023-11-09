@@ -116,5 +116,4 @@ char	**ft_2d_strdup(char **src)
 	}
 	res[idx] = NULL;
 	return (res);
-
 }

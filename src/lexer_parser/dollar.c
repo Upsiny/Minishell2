@@ -90,9 +90,9 @@ void	get_dollar(t_data *data)
 	while (data->prompt[i + j])
 	{
 		j++;
-		if (!ft_isspace(data->prompt[i + j]) || !ft_isinside(data->prompt[i+j]))
+		if (!ft_isspace(data->prompt[i + j])
+			|| !ft_isinside(data->prompt[i + j]))
 			break ;
-	//	lexer_advance(data);
 	}
 	dol_value = malloc(sizeof(char) * (j + 1));
 	if (!dol_value)
@@ -107,15 +107,13 @@ void	get_dollar(t_data *data)
 		i++;
 	}
 	dol_value[k - 1] = '\0';
-//	printf("valeur dollar : %s\n", dol_value);
 	split = search_in_env(data, dol_value);
 	if (!split)
 	{
 		free(split);
 		return ;
 	}
-	replace_prompt(data, split, data->lexer_check, data->lexer_check + j);
-	//printf("%s\n", search_in_env(data, dol_value)); //remplacer par un autre getenv
-//	lexer_advance(data);
+	replace_prompt(data, split, data->lexer_check,
+		data->lexer_check + j);
 	free(split);
 }

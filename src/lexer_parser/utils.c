@@ -82,9 +82,9 @@ char	*search_in_env(t_data *shell, char *var)
 		free_2d_arr(split);
 		idx++;
 	}
-//	if (to_append)
-//		return (append('$', var));
-//	else
+	/*if (to_append)
+		return (append('$', var));
+	else*/
 	return (var);
 }
 
@@ -105,7 +105,6 @@ char	*search_in_env(t_data *shell, char *var)
 //	printf("%s\n", env[i]);
 //	return ("");
 //}
-
 
 int	ft_isspace(char c)
 {

@@ -84,15 +84,17 @@ int	ft_double_quotes(t_data *data)
 		//implement_list(data, TOKEN_DQUOTE, i - 2, data->lexer_check + 1);
 		while (data->prompt[data->lexer_check] != '\"')
 		{
-		//	printf("%c, %d\n", data->prompt[data->lexer_check], data->lexer_check);
-			if (data->prompt[data->lexer_check] == '$' && data->prompt[data->lexer_check - 1] != '$')
+		//printf("%c,%d\n", data->prompt[data->lexer_check], data->lexer_check);
+			if (data->prompt[data->lexer_check] == '$'
+				&& data->prompt[data->lexer_check - 1] != '$')
 				get_dollar(data);
 			else
 				lexer_advance(data);
 		}
-		implement_list(data, TOKEN_DQUOTE, (data->lexer_check - i) - 1, i + 1);
+		implement_list(data, TOKEN_DQUOTE,
+			(data->lexer_check - i) - 1, i + 1);
 		//if (data->prompt[data->lexer_check + 1])
-			lexer_advance(data);
+		lexer_advance(data);
 		return (0);
 	}
 	else

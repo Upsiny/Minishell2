@@ -51,11 +51,11 @@ char	**unset_var(char **tab_cmd, char *str)
 		else
 			cpy[j++] = ft_strdup3(tab_cmd[i]);
 		i++;
-    }
-    cpy[j] = NULL;
-    free_tab(tab_cmd);
-    tab_cmd = ft_cpytab(cpy);
-    free_tab(cpy);
+	}
+	cpy[j] = NULL;
+	free_tab(tab_cmd);
+	tab_cmd = ft_cpytab(cpy);
+	free_tab(cpy);
 	return (tab_cmd);
 }
 
@@ -64,20 +64,11 @@ void	unset_builtin(t_data *data, char **cmd)
 	int	i;
 
 	i = 1;
-/*	int j = 0;
-	while (data->cp_env[j])
+	while (cmd[i])
 	{
-		printf("%s\n", data->cp_env[j]);
-		j++;
-	}
-	printf("\n\n");
-	j = 0; //DEBUG*/
-    while (cmd[i])
-	{
-        if (check_var(cmd[i]) == 0)
+		if (check_var(cmd[i]) == 0)
 		{
 			data->cp_env = unset_var(data->cp_env, cmd[i]);
-		//	data->cp_exp = unset_var(data->cp_exp, cmd[i]);
 			data->ret_err = 0;
 		}
 		else
@@ -91,10 +82,4 @@ void	unset_builtin(t_data *data, char **cmd)
 	free_tab(data->cp_exp);
 	data->cp_exp = order_exp(data->cp_env);
 	data->ret_err = 0;
-	/*while (data->cp_env[j])
-	{
-		printf("%s\n", data->cp_env[j]);
-		j++;
-	}
-	printf("\n");*/
 }

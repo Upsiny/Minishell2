@@ -12,24 +12,16 @@
 
 #include "../../includes/minishell.h"
 
-//ne pas oublier de recuperer dans le bash les numeros derreur pour que les erreurs de minishell coincident au bash;
-
+// ne pas oublier de recuperer dans le bash les numeros derreur pour que les
+// erreurs de minishell coincident au bash;
 void	error_lexer(char *msg)
 {
-	//(void)data;
 	printf("%s\n", msg);
-//	data->prompt = "";
-//	data->index_lexer = 0;
-//	data->lexer_check = 0;
-//	data->lexer_char = data->prompt[data->lexer_check];
-//	free(data->s_lex);
 }
 
 int	ft_error_parsing(char *msg)
 {
-	//(void)data;
 	printf("%s\n", msg);
-//	free_ptr(data->s_lex);
 	return (1);
 }
 

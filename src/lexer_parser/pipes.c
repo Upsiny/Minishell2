@@ -73,7 +73,7 @@ int	is_there_double_pipe(char *str)
 	return (0);
 }
 
-// va retourner un prompt vide si le pipe est tout devant, a la fin, ou en double
+//va retourner un prompt vide si le pipe est tout devant, a la fin, ou en double
 char	*verif_pipes(char *prompt)
 {
 	char	*new_prompt;
@@ -85,14 +85,12 @@ char	*verif_pipes(char *prompt)
 	len = ft_strlen(new_prompt);
 	if (new_prompt[0] == '|' || is_there_double_pipe(new_prompt) == 1)
 	{
-		//message derreur + code derreur a gerer
 		free(new_prompt);
 		new_prompt = ft_calloc(1, sizeof(char));
 		return (new_prompt);
 	}
 	if (new_prompt[len - 1] == '|')
 	{
-		//code derreur a chercher et afficher
 		write(2, "minishell: syntax error `|'\n", 50);
 		free(new_prompt);
 		new_prompt = ft_calloc(1, sizeof(char));

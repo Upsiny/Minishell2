@@ -12,7 +12,7 @@
 
 #include "../../includes/minishell.h"
 
-int ft_str_is_digit(char *str)
+int	ft_str_is_digit(char *str)
 {
 	size_t	i;
 
@@ -20,7 +20,7 @@ int ft_str_is_digit(char *str)
 	if (str)
 	{
 		if (str[0] == '-' || str[0] == '+')
-		i++;
+			i++;
 		while (str[i] && ft_isdigit(str[i]) == 1)
 			i++;
 	}
@@ -44,9 +44,9 @@ int	ft_check_len_exit(char *str)
 		while (str[i])
 			i++;
 	}
-	i = i - sign;
+	i -= sign;
 	if (str && i <= 19)
-			return (1);
+		return (1);
 	else
 		return (0);
 }
@@ -63,7 +63,7 @@ void	verif_arg_exit(t_data *data, int i, char **cmd)
 {
 	if (ft_str_is_digit(cmd[i]) == 1)
 	{
-		if (ft_check_len_exit(cmd[i]) == 0)// a faire
+		if (ft_check_len_exit(cmd[i]) == 0)
 		{
 			write(2, "exit\nminishell: ", 16);
 			write(2, cmd[0], ft_strlen(cmd[0]));

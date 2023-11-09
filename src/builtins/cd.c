@@ -44,7 +44,7 @@ char	*get_home_value(char	**cp_env)
 int	cd_error_arg(char *arg)
 {
 	write(2, "bash: cd: ", 10);
-	ft_print_error_msg2(arg, ": No such file or directory%s\n");
+	ft_print_error_msg2(arg, ": No such file or directory\n");
 	return (1);
 }
 
@@ -65,6 +65,7 @@ void	cd_builtin(t_data *data, char **cmd)
 	if (cmd[1] == NULL || (cmd[1][0] == '~'
 		&& cmd[1][1] == '\0'))
 	{
+		printf("NULL\n");
 		free_ptr(data->pwd);
 		free_ptr(data->oldpwd);
 		return ;
@@ -76,7 +77,7 @@ void	cd_builtin(t_data *data, char **cmd)
 		free_ptr(data->oldpwd);
 	}
 	else
-	{	
+	{
 		change_value_env(data, cmd);
 		change_value_exp(data, cmd);
 		free_ptr(data->pwd);

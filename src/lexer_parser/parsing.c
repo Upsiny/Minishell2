@@ -32,9 +32,9 @@ int	ft_parse_redir(t_data *data, int index, t_list *tmp)
 
 	last = ft_lstsize(data->s_lex) - 1;
 	if (index == last)
-		return (ft_error_parsing("syntax error near unexpected token `newline'"
-				));
-	else if (tmp->next->token_type == TOKEN_REDIR 
+		return (ft_error_parsing(
+				"syntax error near unexpected token `newline'"));
+	else if (tmp->next->token_type == TOKEN_REDIR
 		|| tmp->next->token_type == TOKEN_PIPE)
 	{
 		printf("syntax error near unexpected token `%s'", tmp->next->content);

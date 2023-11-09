@@ -30,19 +30,21 @@ int	ft_count_until_change(t_list *s_lex, int start)
 	return (i);
 }
 
-void	start_expend(t_data *data)//fait une liste de char** pour aider thomas a l'execution
+//fait une liste de char** pour aider thomas a l'execution
+void	start_expend(t_data *data)
 {
 	t_list	*tmp;
 	int		i;
 	int		j;
-	
+
 	tmp = data->s_lex;
 	j = 0;
 	i = ft_count_until_change(data->s_lex, data->index_cmd);
 	data->st_cmd->cmd = malloc((i + 1) * sizeof(char *));
 	while (tmp->index < i)
 	{
-		data->st_cmd->cmd[j] = ft_strjoin(*data->st_cmd->cmd, tmp->content);
+		data->st_cmd->cmd[j] = ft_strjoin(*data->st_cmd->cmd,
+				tmp->content);
 		tmp = tmp->next;
 		if (tmp->next->token_type == TOKEN_REDIR
 			|| tmp->next->token_type == TOKEN_PIPE)

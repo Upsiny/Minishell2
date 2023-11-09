@@ -24,7 +24,7 @@
 # include <fcntl.h>
 # include <stdbool.h>
 
-#define DOLLAR_STOP "`~!@#$%^&*()-=+[]{}\'\"\\|:;,<>./"
+# define DOLLAR_STOP "`~!@#$%^&*()-=+[]{}\'\"\\|:;,<>./"
 
 typedef enum s_type
 {
@@ -33,9 +33,9 @@ typedef enum s_type
 	TOKEN_SQUOTE,
 	TOKEN_DQUOTE,
 	TOKEN_REDIR,
-}	e_type;
+}	t_type;
 
-struct s_data;
+struct	s_data;
 
 typedef struct s_cmd
 {
@@ -76,7 +76,7 @@ typedef struct s_data
 	char	*val_home;
 	char	*pwd;
 	char	*oldpwd;
-	int		ret_err; //rendre cette variable en globale merci helian on est oblige apparement histoire de signaux
+	int		ret_err;
 	char	*tmp_dollar;
 }	t_data;
 
@@ -94,7 +94,6 @@ int		ft_lexer_redir(t_data *data);
 int		ft_lexer_pipe(t_data *data);
 void	get_dollar(t_data *data);
 void	implement_list(t_data *data, int type, int index, int start);
-//char	*verif_pipes(char *prompt);
 int		ft_check_lst(t_data *data);
 void	ft_free_lst(t_data *data);
 void	ft_heredoc(t_list *tmp, t_data *data);
@@ -122,14 +121,17 @@ void	cd_builtin(t_data *data, char **cmd);
 void	cd_go_home(t_data *data);
 int		cd_go_arg(char *arg);
 void	change_value_env(t_data *data, char **cmd);
-void 	change_value_exp(t_data *data, char **cmd);
+void	change_value_exp(t_data *data, char **cmd);
 void	cpy_value(char *name_var, char **str, char *new_val);
-void	change_val_pwdpath(char **str, char **cmd);
-void	change_val(char **str, char *new_pwd, char *pwd, char *oldpwd);
-void	change_value_pwd(char **str);
-void	change_value_oldpwd(char **str, char *pwd, char *oldpwd);
+void	change_val_pwdpath(t_data *data, char **cmd, int exp);
+void	change_val_exp(t_data *data, char *new_pwd);
+void	change_val_env(t_data *data, char *new_pwd);
+void	change_value_pwd_exp(t_data *data);
+void	change_value_pwd_env(t_data *data);
+void	change_value_oldpwd(t_data *data, int exp);
 char	*verif_pwd(char *line);
-int		recup_new_pwd(char **str);
+int		recup_new_pwd_exp(t_data *data);
+int		recup_new_pwd_env(t_data *data);
 void	echo_builtin(char **cmd);
 void	exit_builtin(t_data *data, char **cmd);
 void	env_builtin(t_data *data, char **cmd);
@@ -141,6 +143,8 @@ int		is_valid_exp(char *str);
 int		is_valid_exp2(char *str);
 int		count_variables(char **env);
 void	print_export(char **cp_exp);
+char	*get_env_value(char **env, const char *var);
+void	add_variable(t_data *data, char *variable);
 
 //////////// EXECUTION /////////////
 
@@ -157,7 +161,7 @@ void	*free_ptr(void *ptr);
 void	free_tab(char **tab);
 void	print_list(t_data *data);
 int		ft_isspace(char c);
-int 	ft_count_list(t_list *head);
+int		ft_count_list(t_list *head);
 int		ft_tab_len(char **tab);
 char	**ft_cpytab(char **tab);
 char	*search_in_env(t_data *data, char *str);

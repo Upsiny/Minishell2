@@ -23,7 +23,8 @@ void	ft_heredoc(t_list *tmp, t_data *data)
 		&& tmp2->next->token_type != TOKEN_DQUOTE)
 	{
 		if (tmp2->next)
-			printf("syntax error near unexpected token `%s'", tmp2->next->content);
+			printf("syntax error near unexpected token `%s'",
+				tmp2->next->content);
 		else
 			printf("syntax error near unexpected token `newline'");
 		ft_error_parsing("");

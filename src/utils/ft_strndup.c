@@ -16,7 +16,7 @@ char	*ft_strndup(const char *src, size_t n)
 {
 	size_t		len;
 	const char	*ptr;
-	char		*dup; 
+	char		*dup;
 	size_t		i;
 
 	i = 0;
@@ -29,15 +29,14 @@ char	*ft_strndup(const char *src, size_t n)
 		len++;
 	}
 	dup = malloc(sizeof(char) * (len + 1));
-	if (dup == NULL)
-		return NULL;
+	if (!dup)
+		return (NULL);
 	ptr = src;
 	while (*ptr && i < len)
 	{
-		dup[i] = *ptr;
+		dup[i++] = *ptr;
 		ptr++;
-		i++;
 	}
 	dup[i] = '\0';
-    return (dup);
+	return (dup);
 }

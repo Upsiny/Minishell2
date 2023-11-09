@@ -12,14 +12,10 @@
 
 #include "../../includes/minishell.h"
 
-int ft_count_list(t_list *head)
+int	ft_count_list(t_list *head)
 {
-    if (head == NULL)
-	{
-        return 0;
-    }
+	if (!head)
+		return (0);
 	else
-	{
-        return 1 + ft_count_list(head->next);
-    }
+		return (1 + ft_count_list(head->next));
 }

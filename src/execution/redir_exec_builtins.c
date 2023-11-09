@@ -105,13 +105,11 @@ void	redir_builtins_or_execve(t_data *data, char **args)
 	char	**full_cmd;
 
 	full_cmd = add_cmd_before_args(data, args);
-//	printf("%s\n", full_cmd[1]);
-//	verif_cmd_struct(cmd);
 	if (!(data->s_lex))
-			return ;
+		return ;
 	if (ft_strcmp(data->s_lex->content, "cd") == 0)
 		cd_builtin(data, full_cmd);
-	else if (ft_strcmp(data->s_lex->content, "pwd") == 0)// a modifier en utilisant cp_env;
+	else if (ft_strcmp(data->s_lex->content, "pwd") == 0)
 		pwd_builtin(data, full_cmd);
 	else if (ft_strcmp(data->s_lex->content, "exit") == 0)
 		exit_builtin(data, full_cmd);

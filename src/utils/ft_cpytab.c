@@ -29,7 +29,6 @@ char	**ft_cpytab(char **tab)
 		return (NULL);
 	while (i < size)
 	{
-//		cpy[i] = ft_calloc(sizeof(char), ft_strlen(tab[i]));
 		cpy[i] = ft_strdup3(tab[i]);
 		i++;
 	}

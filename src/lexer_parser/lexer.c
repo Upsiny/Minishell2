@@ -27,15 +27,12 @@ void	implement_list(t_data *data, int type, int index, int start)
 	if (!(new->content))
 	{
 		free(new->content);
-//		free(new);
 		return ;
 	}
 	i = 0;
 	while (i < index && data->prompt[start])
 	{
-		new->content[i] = data->prompt[start];
-		i++;
-		start++;
+		new->content[i++] = data->prompt[start++];
 	}
 	new->content[i] = '\0';
 	new->token_type = type;
@@ -78,7 +75,8 @@ int	lexer_work(t_data *data)
 			if (ft_lexer_pipe(data))
 				return (1);
 		}
-		else if (!ft_isspace(data->lexer_char) && data->prompt[data->lexer_check + 1])
+		else if (!ft_isspace(data->lexer_char)
+			&& data->prompt[data->lexer_check + 1])
 			lexer_advance(data);
 		else if (data->lexer_char)
 		{

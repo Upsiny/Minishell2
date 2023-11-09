@@ -26,7 +26,6 @@ char	**ft_tabcpy(char **tab)
 	while (tab[j])
 		j++;
 	tmp = malloc(sizeof(char *) * (j + 1));
-//	tmp[i] = malloc(sizeof(char) * (ft_strlen(tab[i]) + 1));
 	if (!tmp)
 	{
 		free_2d_arr(tmp);
@@ -47,16 +46,10 @@ t_data	*init_struct(char **envp)
 
 	data = malloc(sizeof(t_data));
 	if (!data)
-	{
-//		free(data);
 		ft_error_msg("malloc error");
-	}
 	data->st_cmd = malloc(sizeof(t_cmd));
 	if (!data->st_cmd)
-	{
-//		free(data->st_cmd);
 		ft_error_msg("malloc error");
-	}
 	if (envp[0] == NULL)
 		printf("No envp. get only new pwd and the old.");
 	else
@@ -64,24 +57,13 @@ t_data	*init_struct(char **envp)
 	data->cp_exp = envp;
 	data->cp_exp = order_exp(data->cp_exp);
 	data->content_here = NULL;
-//	int i = 0;
-/*	while (data->cp_env[i])
-	{
-		printf("%s\n", data->cp_env[i]);
-		i ++;
-	}
-	printf("\n\n\n");
-	i = 0;
-	while (data->cp_exp[i])
-	{
-		printf("%s\n", data->cp_exp[i]);
-		i ++;
-	}*/
 	data->pid = -1;
 	data->in_pipe = 0;
 	data->ret_err = 0;
 	data->val_home = get_home_value(data->cp_env);
-	data->pwd = NULL;
-	data->oldpwd = NULL;
+	data->pwd = get_env_value(data->cp_env, "PWD=");
+	data->oldpwd = get_env_value(data->cp_env, "PWD=");
+	data->oldpwd = ft_strjoin("OLDPWD=", data->oldpwd);
+	add_variable(data, data->oldpwd);
 	return (data);
 }

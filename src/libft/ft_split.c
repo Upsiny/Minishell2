@@ -95,4 +95,3 @@ char	**ft_split(const char *s, char c)
 	newtab = creat_new_tab(s, tabs, c, newtab);
 	return (newtab);
 }
-

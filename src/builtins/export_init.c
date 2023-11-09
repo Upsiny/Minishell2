@@ -13,7 +13,7 @@
 #include "../../includes/minishell.h"
 
 // Fonction utilitaire pour compter le nombre de variables exportées
-int	count_exp(char **cp_exp) 
+int	count_exp(char **cp_exp)
 {
 	int	count;
 
@@ -23,7 +23,8 @@ int	count_exp(char **cp_exp)
 	return (count);
 }
 
-// Fonction utilitaire pour dupliquer les variables exportées dans un tableau séparé
+// Fonction utilitaire pour dupliquer les variables exportées dans un tableau
+// séparé
 char	**duplicate_exp(char **cp_exp, int count)
 {
 	char	**sorted_exp;
@@ -72,32 +73,11 @@ void	sort_exp(char **sorted_exp, int count)
 // Fonction principale pour ordonner les variables exportées
 char	**order_exp(char **cp_env)
 {
-//	int		i;
-	//int		j;
 	int		count;
 	char	**sorted_exp;
-	//char	*temp;
 
-//	i = 0;
 	count = count_exp(cp_env);
 	sorted_exp = duplicate_exp(cp_env, count);
 	sort_exp(sorted_exp, count);
-	return (sorted_exp);
-	/*while (i < count)
-	{
-		j = 0;
-		while (cp_env[j] != NULL)
-		{
-			if (ft_strncmp(cp_env[j], sorted_exp[i], ft_strlen(sorted_exp[i])) == 0)
-			{
-				temp = cp_env[j];
-				cp_env[j] = cp_env[i];
-				cp_env[i] = temp;
-				break;
-			}
-			j++;
-		}
-		i++;
-	}*/
 	return (sorted_exp);
 }

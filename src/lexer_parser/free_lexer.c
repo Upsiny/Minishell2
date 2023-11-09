@@ -20,7 +20,7 @@ void	ft_free_lst(t_data *data)
 	tmp = data->s_lex;
 	if (!tmp)
 		return ;
-	while(tmp->next != NULL)
+	while (tmp->next)
 	{
 		tmp2 = tmp;
 		tmp = tmp->next;

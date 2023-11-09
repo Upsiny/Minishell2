@@ -12,74 +12,117 @@
 
 #include "../../includes/minishell.h"
 
-void	change_value_oldpwd(char **str, char *pwd, char *oldpwd)
+void	change_value_oldpwd(t_data *data, int exp)
 {
-    char	*name_var;
-    int		i;
-    int		y;
+	char	*name_var;
+	int		i;
+	int		y;
 
 	i = 0;
 	y = 0;
-	while (oldpwd[y] != '=')
+	while (data->oldpwd[y] != '=')
 		y++;
 	name_var = malloc(sizeof(char) * (y + 2));
 	while (i <= y)
 	{
-		name_var[i] = oldpwd[i];
+		name_var[i] = data->oldpwd[i];
 		i++;
 	}
 	name_var[i] = '\0';
-	cpy_value(name_var, str, pwd);
+	if (exp)
+		cpy_value(name_var, data->cp_exp, data->pwd);
+	else
+		cpy_value(name_var, data->cp_env, data->pwd);
 	free(name_var);
 }
 
-
-void	change_value_pwd(char **str)
+void	change_value_pwd_exp(t_data *data)
 {
-    char	*new_val;
-    int		i;
-    int		j;
-    int		w;
+	char	*new_val;
+	int		i;
+	int		j;
+	int		w;
 
 	i = 0;
 	j = 0;
 	w = 0;
-	while (str[i])
+	while (data->cp_exp[i])
 	{
-		if (ft_strncmp(str[i], "PWD=", 4) == 0)
-			break;
+		if (ft_strncmp(data->cp_exp[i], "PWD=", 4) == 0)
+			break ;
 		i++;
 	}
-	j = recup_new_pwd(str);
+	j = recup_new_pwd_exp(data);
 	new_val = malloc(sizeof(char) * (j + 1));
-	while (str[i][w] && w < j)
+	while (data->cp_env[i][w] && w < j)
 	{
-		new_val[w] = str[i][w];
+		new_val[w] = data->cp_env[i][w];
 		w++;
 	}
 	new_val[w] = '\0';
-	free(str[i]);
-	str[i] = verif_pwd(new_val);
+	data->cp_env[i] = verif_pwd(new_val);
 	free(new_val);
 }
 
-void	change_val(char **str, char *new_pwd, char *pwd, char *oldpwd)
+void	change_value_pwd_env(t_data *data)
+{
+	char	*new_val;
+	int		i;
+	int		j;
+	int		w;
+
+	i = 0;
+	j = 0;
+	w = 0;
+	while (data->cp_env[i])
+	{
+		if (ft_strncmp(data->cp_env[i], "PWD=", 4) == 0)
+			break ;
+		i++;
+	}
+	j = recup_new_pwd_env(data);
+	new_val = malloc(sizeof(char) * (j + 1));
+	while (data->cp_env[i][w] && w < j)
+	{
+		new_val[w] = data->cp_env[i][w];
+		w++;
+	}
+	new_val[w] = '\0';
+	data->cp_env[i] = verif_pwd(new_val);
+	free(new_val);
+}
+
+void	change_val_exp(t_data *data, char *new_pwd)
 {
 	int	i;
 
 	i = 0;
-	change_value_oldpwd(str, pwd, oldpwd);
-	while (str[i])
+	change_value_oldpwd(data, 1);
+	while (data->cp_exp[i])
 	{
-		if (ft_strncmp(str[i], "PWD=", 4) == 0)
-			break;
+		if (ft_strncmp(data->cp_exp[i], "PWD=", 4) == 0)
+			break ;
 		i++;
 	}
-	free(str[i]);
-	str[i] = ft_strjoin("PWD=", new_pwd);
+	data->cp_exp[i] = ft_strjoin("PWD=", new_pwd);
 }
 
-void	add_reponame(char **str, char *repo)
+void	change_val_env(t_data *data, char *new_pwd)
+{
+	int	i;
+
+	i = 0;
+	change_value_oldpwd(data, 0);
+	while (data->cp_env[i])
+	{
+		if (ft_strncmp(data->cp_env[i], "PWD=", 4) == 0)
+			break ;
+		i++;
+	}
+	data->cp_env[i] = ft_strjoin("PWD=", new_pwd);
+}
+
+void	add_reponame_exp(t_data *data, char *repo)
 {
 	char	*new_pwd;
 	char	*all_addup;
@@ -87,27 +130,53 @@ void	add_reponame(char **str, char *repo)
 
 	i = 0;
 	new_pwd = NULL;
-	while (str[i++])
+	while (data->cp_exp[i++])
 	{
-		if (ft_strncmp(str[i], "PWD=", 4) == 0)
+		if (ft_strncmp(data->cp_exp[i], "PWD=", 4) == 0)
 		{
-			new_pwd = ft_strdup3(str[i]);
-			break;
+			new_pwd = ft_strdup3(data->cp_exp[i]);
+			break ;
 		}
 	}
-	free(str[i]);
 	if (new_pwd[4] == '/' && new_pwd[5] == '\0')
-		str[i] = ft_strjoin(new_pwd, repo);
+		data->cp_exp[i] = ft_strjoin(new_pwd, repo);
 	else
 	{
 		all_addup = ft_strjoin(new_pwd, "/");
-		str[i] = ft_strjoin(all_addup, repo);
+		data->cp_exp[i] = ft_strjoin(all_addup, repo);
 		free(all_addup);
 	}
 	free(new_pwd);
 }
 
-void	change_val_pwdpath(char **str, char **cmd)
+void	add_reponame_env(t_data *data, char *repo)
+{
+	char	*new_pwd;
+	char	*all_addup;
+	int		i;
+
+	i = 0;
+	new_pwd = NULL;
+	while (data->cp_env[i++])
+	{
+		if (ft_strncmp(data->cp_env[i], "PWD=", 4) == 0)
+		{
+			new_pwd = ft_strdup3(data->cp_env[i]);
+			break ;
+		}
+	}
+	if (new_pwd[4] == '/' && new_pwd[5] == '\0')
+		data->cp_env[i] = ft_strjoin(new_pwd, repo);
+	else
+	{
+		all_addup = ft_strjoin(new_pwd, "/");
+		data->cp_env[i] = ft_strjoin(all_addup, repo);
+		free(all_addup);
+	}
+	free(new_pwd);
+}
+
+void	change_val_pwdpath(t_data *data, char **cmd, int exp)
 {
 	char	**path;
 	int		i;
@@ -117,9 +186,19 @@ void	change_val_pwdpath(char **str, char **cmd)
 	while (path[i])
 	{
 		if (ft_strcmp(path[i], "..") == 0)
-			change_value_pwd(str);
+		{
+			if (exp)
+				change_value_pwd_exp(data);
+			else
+				change_value_pwd_env(data);
+		}
 		if (ft_strcmp(path[i], "..") != 0 && ft_strcmp(path[i], ".") != 0)
-			add_reponame(str, path[i]);
+		{
+			if (exp)
+				add_reponame_exp(data, path[i]);
+			else
+				add_reponame_env(data, path[i]);
+		}
 		i++;
 	}
 	free_tab(path);

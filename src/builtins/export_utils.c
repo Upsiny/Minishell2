@@ -42,7 +42,7 @@ int	count_variables(char **env)
 int	is_valid_exp2(char *str)
 {
 	if (str == NULL)
-	return (1);
+		return (1);
 	if (str[0] == '\0')
 		return (1);
 	if (ft_strchr(str, '-'))

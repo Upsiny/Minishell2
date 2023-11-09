@@ -14,7 +14,7 @@
 
 void	free_list(t_list *list)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	while (list)
 	{
@@ -39,8 +39,9 @@ void	free_2d_arr(char **arr)
 	free(arr);
 }
 
-//ne pas oublier de stocker dans nb_cmds le nombre de cmds, sinon le builtin exit ne fonctionne pas pareil
-//bah fait le
+// ne pas oublier de stocker dans nb_cmds le nombre de cmds,
+// sinon le builtin exit ne fonctionne pas pareil
+// bah fait le
 int	main(int ac, char **av, char **envp)
 {
 	t_data	*data;
@@ -51,42 +52,37 @@ int	main(int ac, char **av, char **envp)
 	if (ac != 1)
 		ft_error_msg("no arguments accepted");
 	if (!data)
-	{
 		ft_error_msg("Malloc Error");
-	}
 	ft_signaux();
 	while (1)
 	{
 		data->pid = -1;
 		data->prompt = readline("minishell de mort (҂◡_◡) > ");
 		add_history(data->prompt);
-		if (data->prompt == NULL)
+		if (!(data->prompt))
 		{
-//			free_2d_arr(data->cp_env);
-//			free_2d_arr(data->cp_exp);
 			printf("exit\n");
 			exit(1);
 		}
 		init_lexer(data);
-		if (!lexer_work(data))// Dans token type strings: supprimer les quotes (si circuit fermer)
+		if (!lexer_work(data))
 		{
-			ft_check_lst(data); // erreur dans s_lex, le premier maillon a un content vide
-//			print_list(data);
-//			if (!ft_check_lst(data)) // securiter a valider quqnd les free seront fait !
-//			{
-//				data->nb_cmds = 1; // pour exit, il faut indiquer que cest la seule cmds
-//				printf("%s\n", data->st_cmd->cmd[0]);
+			if (!ft_check_lst(data))
+			{
+//				pour exit, il faut indiquer que cest la seule cmds
+//				data->nb_cmds = 1;
 				cmd = build_cmd_from_lexer(data);
-				redir_builtins_or_execve(data, cmd); // mettre tout la fin dans ces quotes
+				redir_builtins_or_execve(data, cmd);
 				free_list(data->s_lex);
-//			}
+			}
 		}
-
 		free(data->content_here);
 		free(data->prompt);
 		free(cmd);
 	}
-	ft_free_lst(data);
 	free(data->cp_env);
 	free(data->cp_exp);
+	free(data->pwd);
+	free(data->oldpwd);
+	ft_free_lst(data);
 }

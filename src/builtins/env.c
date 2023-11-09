@@ -37,22 +37,22 @@ void	env_builtin(t_data *data, char **cmd)
 
 	i = 0;
 	if (!if_path_exist(data))
-		{
-			write(2, "minishell :", 11);
-			write(2, &cmd[0], ft_strlen(cmd[0]));
-			write(2, ": No such file or directory\n", 28);
-			data->ret_err = 127;
-			return ;
-		}
+	{
+		write(2, "minishell :", 11);
+		write(2, &cmd[0], ft_strlen(cmd[0]));
+		write(2, ": No such file or directory\n", 28);
+		data->ret_err = 127;
+		return ;
+	}
 	if (cmd[1])
-		{
-			write(2, "env :", 5);
-			write(2, "'", 1);
-			write(2, &cmd[1], ft_strlen(cmd[1]));
-			write(2, "': No such file or directory\n", 29);
-			data->ret_err = 127;
-			return ;
-		}
+	{
+		write(2, "env :", 5);
+		write(2, "'", 1);
+		write(2, &cmd[1], ft_strlen(cmd[1]));
+		write(2, "': No such file or directory\n", 29);
+		data->ret_err = 127;
+		return ;
+	}
 	while (data->cp_env[i])
 		printf("%s\n", data->cp_env[i++]);
 	data->ret_err = 0;

@@ -33,13 +33,13 @@ void	check_option(char **cmd)
 	int	i;
 
 	i = 2;
-	while (cmd[i] && cmd[i][0] != '\0' && (cmd[i][0] >= 32
-				&& cmd[i][0] <= 126))
+	while (cmd[i] && cmd[i][0] != '\0'
+		&& (cmd[i][0] >= 32 && cmd[i][0] <= 126))
 	{
 		if (cmd[i + 1] != NULL)
-				printf("%s ", cmd[i]);
+			printf("%s ", cmd[i]);
 		else
-				printf("%s", cmd[i]);
+			printf("%s", cmd[i]);
 		i++;
 	}
 	return ;
@@ -50,7 +50,6 @@ void	echo_builtin(char **cmd)
 	int	i;
 
 	i = 1;
-//	printf("%s\n", cmd[1]);
 	if (!cmd[1] || cmd[1] == NULL || cmd[1][0] == '\0')
 	{
 		printf("\n");
@@ -59,16 +58,16 @@ void	echo_builtin(char **cmd)
 	if ((ft_strncmp((cmd[1]), "-n", 2)) == 0 && checker_n(cmd[1]) == 1)
 		check_option(cmd);
 	else if (ft_strlen(cmd[0]) == 4)
-		while (cmd[i] && cmd[i][0] != '\0' && (cmd[i][0] >= 32
-				&& cmd[i][0] <= 126))
+	{
+		while (cmd[i] && cmd[i][0] != '\0'
+			&& (cmd[i][0] >= 32 && cmd[i][0] <= 126))
 		{
-	//		if (cmd[i][0] == '$')
-	//			i++;
 			if (cmd[i + 1] != NULL)
-					printf("%s ", cmd[i]);
+				printf("%s ", cmd[i]);
 			else
-					printf("%s\n", cmd[i]);
+				printf("%s\n", cmd[i]);
 			i++;
 		}
+	}
 	return ;
 }

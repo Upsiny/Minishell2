@@ -31,25 +31,48 @@ char	*recup_oldpwd(char **str)
 	return (oldpwd);
 }
 
-int	recup_new_pwd(char **str)
+int	recup_new_pwd_exp(t_data *data)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
-	while (str[i])
+	while (data->cp_exp[i])
 	{
-		if (ft_strncmp(str[i], "PWD=", 4) == 0)
+		if (ft_strncmp(data->cp_exp[i], "PWD=", 4) == 0)
 		{
-			while (str[i][j] != '\0')
+			while (data->cp_exp[i][j] != '\0')
 				j++;
-			if (str[i][j] == '\0')
+			if (data->cp_exp[i][j] == '\0')
 				break ;
 		}
 		i++;
 	}
-	while (str[i][j] != '/')
+	while (data->cp_exp[i][j] != '/')
+		j--;
+	return (j);
+}
+
+int	recup_new_pwd_env(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (data->cp_env[i])
+	{
+		if (ft_strncmp(data->cp_env[i], "PWD=", 4) == 0)
+		{
+			while (data->cp_env[i][j] != '\0')
+				j++;
+			if (data->cp_env[i][j] == '\0')
+				break ;
+		}
+		i++;
+	}
+	while (data->cp_env[i][j] != '/')
 		j--;
 	return (j);
 }
