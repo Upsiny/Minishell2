@@ -108,23 +108,3 @@ char	*join_var(char *str1, char *new_val)
 	free(cpy);
 	return (dest);
 }
-
-void	cpy_value(char *name_var, char **str, char *new_val)
-{
-	char	*ret;
-	int		i;
-
-	i = 0;
-	ret = join_var(name_var, new_val);
-	while (str[i])
-	{
-		if (ft_strncmp(str[i], name_var, ft_strlen(name_var)) == 0)
-		{
-			free(str[i]);
-			str[i] = ft_strdup3(ret);
-			break ;
-		}
-		i++;
-	}
-	free(ret);
-}
