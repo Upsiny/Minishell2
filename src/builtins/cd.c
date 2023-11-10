@@ -12,7 +12,7 @@
 
 #include "../../includes/minishell.h"
 
-char	*get_home_value(char	**cp_env)
+char	*get_home_value(char **cp_env)
 {
 	char	*home;
 	int		i;
@@ -63,11 +63,15 @@ void	cd_builtin(t_data *data, char **cmd)
 {
 	get_pwd(data);
 	if (cmd[1] == NULL || (cmd[1][0] == '~'
-		&& cmd[1][1] == '\0'))
+			&& cmd[1][1] == '\0'))
 	{
-		printf("NULL\n");
+//		cd_go_home(data);
+//		change_value_env(data, cmd);
+//		change_value_exp(data, cmd);
 		free_ptr(data->pwd);
 		free_ptr(data->oldpwd);
+		data->ret_err = 0;
+//		free(cmd[1]);
 		return ;
 	}
 	else if (cd_go_arg(cmd[1]) == 0)

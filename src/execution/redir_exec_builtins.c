@@ -108,7 +108,13 @@ void	redir_builtins_or_execve(t_data *data, char **args)
 	if (!(data->s_lex))
 		return ;
 	if (ft_strcmp(data->s_lex->content, "cd") == 0)
+	{
+		if (full_cmd[1] == NULL || (full_cmd[1][0] == '~' && full_cmd[1][1] == '\0'))
+			full_cmd[1] = get_home_value(data->cp_env);
+		else if (full_cmd[1] == NULL || (full_cmd[1][0] == '-' && full_cmd[1][1] == '\0'))
+			full_cmd[1] = ft_split(get_env_value(data->cp_env, "OLDPWD="), '=')[1];
 		cd_builtin(data, full_cmd);
+	}
 	else if (ft_strcmp(data->s_lex->content, "pwd") == 0)
 		pwd_builtin(data, full_cmd);
 	else if (ft_strcmp(data->s_lex->content, "exit") == 0)
@@ -123,5 +129,5 @@ void	redir_builtins_or_execve(t_data *data, char **args)
 		unset_builtin(data, full_cmd);
 	else
 		ft_set_path_and_execve(data, full_cmd);
-	free_2d_arr(full_cmd);
+//	free_2d_arr(full_cmd);
 }

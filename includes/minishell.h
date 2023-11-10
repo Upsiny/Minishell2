@@ -145,6 +145,11 @@ int		count_variables(char **env);
 void	print_export(char **cp_exp);
 char	*get_env_value(char **env, const char *var);
 void	add_variable(t_data *data, char *variable);
+void	add_reponame_env(t_data *data, char *repo);
+void	add_reponame_exp(t_data *data, char *repo);
+void	cpy_value(char *name_var, char **str, char *new_val);
+char	*join_var(char *str1, char *new_val);
+void	cd_go_home(t_data *data);
 
 //////////// EXECUTION /////////////
 

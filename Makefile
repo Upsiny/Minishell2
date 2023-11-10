@@ -19,6 +19,8 @@ SRCS    	=	src/main.c							\
 				src/builtins/cd_utils.c				\
 				src/builtins/cd_utils2.c			\
 				src/builtins/cd_utils3.c			\
+				src/builtins/cd_utils4.c			\
+				src/builtins/cd_utils5.c			\
 				src/builtins/echo.c					\
 				src/builtins/exit.c					\
 				src/builtins/env.c					\

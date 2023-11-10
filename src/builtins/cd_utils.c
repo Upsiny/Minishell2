@@ -33,7 +33,10 @@ void	change_value_exp(t_data *data, char **cmd)
 void	change_value_env(t_data *data, char **cmd)
 {
 	if (cmd[1][0] == '/')
+	{
+		printf("Oui\n");
 		change_val_env(data, cmd[1]);
+	}
 	else if (ft_strcmp(cmd[1], ".") == 0 || ft_strcmp(cmd[1], "./") == 0)
 		change_value_oldpwd(data, 0);
 	else if (ft_strcmp(cmd[1], "..") == 0 || ft_strcmp(cmd[1], "../") == 0)
