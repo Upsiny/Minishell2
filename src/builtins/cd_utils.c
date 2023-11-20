@@ -34,7 +34,6 @@ void	change_value_env(t_data *data, char **cmd)
 {
 	if (cmd[1][0] == '/')
 	{
-		printf("Oui\n");
 		change_val_env(data, cmd[1]);
 	}
 	else if (ft_strcmp(cmd[1], ".") == 0 || ft_strcmp(cmd[1], "./") == 0)

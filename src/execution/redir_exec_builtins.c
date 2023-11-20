@@ -112,16 +112,18 @@ void	redir_builtins_or_execve(t_data *data, char **args)
 	{
 		if (full_cmd[1] == NULL || (full_cmd[1][0] == '~' && full_cmd[1][1] == '\0'))
 			full_cmd[1] = get_home_value(data->cp_env);
-		if (full_cmd[1] == NULL || (full_cmd[1][0] == '~' && full_cmd[1][1] != '\0'))
+		else if (full_cmd[1] == NULL || (full_cmd[1][0] == '~' && full_cmd[1][1] != '\0'))
 		{
 			tmp_cmd = ft_calloc(sizeof(char), ft_strlen(full_cmd[1] - 1));
 			ft_memcpy(tmp_cmd, full_cmd[1] + 1, ft_strlen(full_cmd[1]));
 			full_cmd[1] = get_home_value(data->cp_env);
 			full_cmd[1] = ft_strjoin(full_cmd[1], tmp_cmd);
-			printf("%s\n", full_cmd[1]);
 		}
 		else if (full_cmd[1] == NULL || (full_cmd[1][0] == '-' && full_cmd[1][1] == '\0'))
+		{
 			full_cmd[1] = ft_split(get_env_value(data->cp_env, "OLDPWD="), '=')[1];
+			printf("%s\n", full_cmd[1]);
+		}
 		cd_builtin(data, full_cmd);
 	}
 	else if (ft_strcmp(data->s_lex->content, "pwd") == 0)
