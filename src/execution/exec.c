@@ -6,7 +6,7 @@
 /*   By: tpaufert <tpaufert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 16:31:09 by tpaufert          #+#    #+#             */
-/*   Updated: 2023/07/10 17:19:36 by tpaufert         ###   ########.fr       */
+/*   Updated: 2024/02/26 16:58:01 by hguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,9 @@ int	verif_cmd(char **all_path, char **pathcmd, char **cmd)
 		free(gd_path);
 		z++;
 	}
+	printf("je passe ici? \n");
 	if (z == i)
-		aff_errcmd(cmd);
+		return(aff_errcmd(cmd));
 	return (0);
 }
 
@@ -54,6 +55,7 @@ int	aff_errcmd(char **cmd)
 		}
 		i++;
 	}
+	printf("je passe la\n");
 	ft_print_error_msg3("minishell: ", cmd[0], ": command not found\n");
 	return (127);
 }
@@ -109,7 +111,8 @@ void	ft_execution(t_data *data, char **all_path, char **pathcmd, char **cmd)
 	{
 		free_tab(all_path);
 		free_tab(pathcmd);
-		exit(data->ret_err);
+		printf("kamoulox?\n");
+	//	exit(data->ret_err);
 	}
 	else
 	{

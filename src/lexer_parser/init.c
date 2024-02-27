@@ -6,7 +6,7 @@
 /*   By: tpaufert <tpaufert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:11:27 by tpaufert          #+#    #+#             */
-/*   Updated: 2023/07/07 16:31:49 by tpaufert         ###   ########.fr       */
+/*   Updated: 2024/02/27 19:21:31 by hguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ char	**ft_tabcpy(char **tab)
 	while (tab[i])
 	{
 		tmp[i] = ft_strdup3(tab[i]);
+//	printf("debug1111111111111111111111111111111111111111111111\n");
 		i++;
 	}
 	tmp[i] = NULL;
@@ -53,9 +54,11 @@ t_data	*init_struct(char **envp)
 	if (envp[0] == NULL)
 		printf("No envp. get only new pwd and the old.");
 	else
-		data->cp_env = ft_tabcpy(envp);
+		data->cp_env = ft_tabcpy(envp);//provoque des leaks
+//	printf("debug2222222222222222222222222222222222222222222222\n");
 	data->cp_exp = envp;
 	data->cp_exp = order_exp(data->cp_exp);
+//	dprintf(2, "debug3333333333333333333333333333333333333333333\n");//DEBUG
 	data->content_here = NULL;
 	data->pid = -1;
 	data->in_pipe = 0;
