@@ -36,6 +36,7 @@ int	verif_cmd(char **all_path, char **pathcmd, char **cmd)
 	}
 	printf("je passe ici? \n");
 	if (z == i)
+//        aff_errcmd(cmd);
 		return(aff_errcmd(cmd));
 	return (0);
 }

@@ -127,7 +127,7 @@ void	redir_builtins_or_execve(t_data *data, char **args)
 		cd_builtin(data, full_cmd);
 	}
 	else if (ft_strcmp(data->s_lex->content, "pwd") == 0)
-		pwd_builtin(data, full_cmd);
+        pwd_builtin(data, full_cmd);
 	else if (ft_strcmp(data->s_lex->content, "exit") == 0)
 		exit_builtin(data, full_cmd);
 	else if (ft_strcmp(data->s_lex->content, "echo") == 0)

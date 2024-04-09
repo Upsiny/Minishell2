@@ -51,7 +51,7 @@ int	contains_env_vars(char *arg)
 
 char	*append(char before, char *str)
 {
-	int	len;
+	size_t	len;
 
 	len = ft_strlen(str);
 	if (before)
@@ -67,25 +67,27 @@ char	*search_in_env(t_data *shell, char *var)
 	int		idx;
 	char	**split;
 	char	*res;
+    int     found;
 
 	idx = 0;
+    found = 0;
 	while (shell->cp_env[idx])
 	{
 		split = ft_split(shell->cp_env[idx], '=');
 		if (!ft_strcmp(split[0], var))
 		{
+            found = 1;
 			res = ft_strdup3(split[1]);
 			free_2d_arr(split);
-			free(var);
-			return (res);
+            break;
 		}
 		free_2d_arr(split);
 		idx++;
 	}
-	/*if (to_append)
-		return (append('$', var));
-	else*/
-	return (var);
+    if (found)
+        return (res);
+    else
+        return (var);
 }
 
 //char	*search_in_env(t_data *data, char *str)

@@ -50,6 +50,7 @@ void	replace_prompt(t_data *data, char *value, int start, int end)
 		j++;
 	}
 	last_part[i] = '\0';
+//    printf("val : %s\n", value);
 	new_prompt = ft_strjoin(first_part, value);
 	free(first_part);
 	data->tmp_dollar = ft_strdup3(new_prompt);
@@ -107,13 +108,14 @@ void	get_dollar(t_data *data)
 		i++;
 	}
 	dol_value[k - 1] = '\0';
-	split = search_in_env(data, dol_value);
+    split = search_in_env(data, dol_value);
 	if (!split)
-	{
-		free(split);
-		return ;
-	}
-	replace_prompt(data, split, data->lexer_check,
+    {
+        free(split);
+        return;
+    }
+	replace_prompt(data, split, data->lexer_check - 1,
 		data->lexer_check + j);
+//    printf("%s\n", data->prompt);
 	free(split);
 }

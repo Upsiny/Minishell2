@@ -176,5 +176,6 @@ char	*ft_strcat(char *dest, char *src);
 char	**add_cmd_before_args(t_data *data, char **args);
 void	free_2d_arr(char **arr);
 char	**ft_2d_strdup(char **src);
+char	*append(char before, char *str);
 
 #endif
