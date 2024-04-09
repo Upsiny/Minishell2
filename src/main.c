@@ -76,6 +76,7 @@ int	main(int ac, char **av, char **envp)
 				free_list(data->s_lex);
 			}
 		}
+//		free(data->val_home);
 		free(data->content_here);
 		free(data->prompt);
 		free(cmd);

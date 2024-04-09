@@ -19,8 +19,8 @@ void	cd_go_home(t_data *data)
 	char	*pwd_env;
 	char	*pwd_exp;
 
-	home_env = get_home_value(data->cp_env);
-	home_exp = get_home_value(data->cp_exp);
+	home_env = get_env_value(data->cp_env, "HOME=");
+	home_exp = get_env_value(data->cp_env, "HOME=");
 	data->oldpwd = data->pwd;
 	data->pwd = home_env;
 	pwd_env = ft_split(home_env, '=')[1];

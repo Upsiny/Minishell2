@@ -111,12 +111,12 @@ void	redir_builtins_or_execve(t_data *data, char **args)
 	if (ft_strcmp(data->s_lex->content, "cd") == 0)
 	{
 		if (full_cmd[1] == NULL || (full_cmd[1][0] == '~' && full_cmd[1][1] == '\0'))
-			full_cmd[1] = get_home_value(data->cp_env);
+			full_cmd[1] = get_env_value(data->cp_env, "HOME=");
 		else if (full_cmd[1] == NULL || (full_cmd[1][0] == '~' && full_cmd[1][1] != '\0'))
 		{
 			tmp_cmd = ft_calloc(sizeof(char), ft_strlen(full_cmd[1] - 1));
 			ft_memcpy(tmp_cmd, full_cmd[1] + 1, ft_strlen(full_cmd[1]));
-			full_cmd[1] = get_home_value(data->cp_env);
+			full_cmd[1] = get_env_value(data->cp_env, "HOME=");
 			full_cmd[1] = ft_strjoin(full_cmd[1], tmp_cmd);
 		}
 		else if (full_cmd[1] == NULL || (full_cmd[1][0] == '-' && full_cmd[1][1] == '\0'))
@@ -140,5 +140,11 @@ void	redir_builtins_or_execve(t_data *data, char **args)
 		unset_builtin(data, full_cmd);
 	else
 		ft_set_path_and_execve(data, full_cmd);
-//	free_2d_arr(full_cmd);
+	if (full_cmd != NULL) {
+		for (int i = 0; full_cmd[i] != NULL; i++) {
+			free(full_cmd[i]);
+		}
+	}
+	free(full_cmd);
+	full_cmd = NULL;
 }

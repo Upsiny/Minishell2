@@ -18,20 +18,24 @@ char	*get_home_value(char **cp_env)
 	int		i;
 	int		j;
 	int		z;
-
 	i = 0;
 	j = 0;
 	z = 0;
-	while (cp_env && cp_env[i++])
+	while (cp_env[i] != NULL)
 	{
 		if (ft_strncmp(cp_env[i], "HOME=", 5) == 0)
 			break ;
+		i++;
 	}
-	home = malloc(sizeof(char) * (ft_strlen(cp_env[i]) + 1));
-	while (cp_env && cp_env[i][j] != '=')
+	if (cp_env[i] == NULL)
+		return (NULL);  // Returns NULL if the "HOME" is not found
+	home = malloc(sizeof(char) * (ft_strlen(cp_env[i] - 5) + 1));  // Exclude "HOME=" from the length
+	if (home == NULL)
+		return (NULL);  // Returns NULL if the malloc fails
+	while (cp_env[i][j] != '=')
 		j++;
 	j++;
-	while (cp_env && cp_env[i][j])
+	while (cp_env[i][j] != '\0')
 	{
 		home[z] = cp_env[i][j];
 		j++;

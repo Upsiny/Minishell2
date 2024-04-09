@@ -64,25 +64,12 @@ int	is_valid_exp(char *str)
 	return (0);
 }
 
-void	print_export(char **cp_exp)
-{
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	while (cp_exp[i])
-	{
-		j = 0;
-		if (check_var(cp_exp[i]) == 0)
-		{
-			printf("declare -x ");
-			while (cp_exp[i][j] != '\0')
-				printf("%c", cp_exp[i][j++]);
-			printf("\n");
-		}
-		else
+void print_export(char **cp_exp) {
+	for(int i=0; cp_exp[i]; ++i) {
+		if (check_var(cp_exp[i]) == 0) {
+			printf("declare -x %s\n", cp_exp[i]);
+		} else {
 			print_val_exp(cp_exp[i]);
-		i++;
+		}
 	}
 }

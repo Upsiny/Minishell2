@@ -54,6 +54,9 @@ void	env_builtin(t_data *data, char **cmd)
 		return ;
 	}
 	while (data->cp_env[i])
-		printf("%s\n", data->cp_env[i++]);
+	{
+		printf("%s\n", data->cp_env[i]);
+		i++;
+	}
 	data->ret_err = 0;
 }

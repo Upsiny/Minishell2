@@ -14,35 +14,27 @@
 
 char	**build_cmd_from_lexer(t_data *data)
 {
-	char	**cmd;
-	t_list	*el;
-	int		args;
 	int		idx;
+	int		args;
+	t_list	*el;
+	char	**cmd;
 
-	if (!(data->s_lex))
-	{
-		free_ptr(data->s_lex);
+	args = 0;
+	if (!data->s_lex)
 		return (NULL);
-	}
 	el = data->s_lex->next;
-	idx = 0;
 	while (el)
 	{
 		el = el->next;
 		args++;
 	}
 	cmd = ft_calloc(sizeof(char *), args + 1);
-	if (!cmd)
-	{
-		free(cmd);
-		return (NULL);
-	}
 	el = data->s_lex->next;
+	idx = 0;
 	while (el)
 	{
-		cmd[idx] = el->content;
+		cmd[idx++] = el->content;
 		el = el->next;
-		idx++;
 	}
 	cmd[idx] = NULL;
 	return (cmd);
