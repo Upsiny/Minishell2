@@ -6,7 +6,7 @@
 /*   By: tpaufert <tpaufert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:40 by tpaufert          #+#    #+#             */
-/*   Updated: 2023/06/14 17:23:41 by tpaufert         ###   ########.fr       */
+/*   Updated: 2024/02/28 12:32:41 by hguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,3 +27,17 @@ void	ft_free_lst(t_data *data)
 		free(tmp2);
 	}
 }
+/*
+//fonction to free a lst
+void ft_free_lst(t_data *data)
+{
+	t_list	*tmp;
+
+	while (data)
+	{
+		tmp = data->next;
+		data->next = NULL;
+		free(data);
+		data = tmp;
+	}
+}*/

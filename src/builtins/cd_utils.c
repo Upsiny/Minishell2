@@ -6,7 +6,7 @@
 /*   By: tpaufert <tpaufert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 15:18:20 by tpaufert          #+#    #+#             */
-/*   Updated: 2023/07/07 17:25:32 by tpaufert         ###   ########.fr       */
+/*   Updated: 2024/04/06 11:30:15 by hguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	*get_env_value(char **env, const char *var)
 	while (env[i])
 	{
 		if (ft_strncmp(env[i], var, ft_strlen(var)) == 0)
-			return (ft_strdup3(env[i]));
+			return (env[i]);
 		i++;
 	}
 	return (NULL);

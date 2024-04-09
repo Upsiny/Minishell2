@@ -6,7 +6,7 @@
 /*   By: tpaufert <tpaufert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:11:27 by tpaufert          #+#    #+#             */
-/*   Updated: 2024/02/27 19:21:31 by hguillau         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:10:11 by hguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,9 @@ char	**ft_tabcpy(char **tab)
 	while (tab[i])
 	{
 		tmp[i] = ft_strdup3(tab[i]);
-//	printf("debug1111111111111111111111111111111111111111111111\n");
 		i++;
 	}
-	tmp[i] = NULL;
+	tmp[j] = NULL;
 	return (tmp);
 }
 
@@ -52,21 +51,19 @@ t_data	*init_struct(char **envp)
 	if (!data->st_cmd)
 		ft_error_msg("malloc error");
 	if (envp[0] == NULL)
-		printf("No envp. get only new pwd and the old.");
+		printf("No envp. get only new pwd and the old.\n");
 	else
-		data->cp_env = ft_tabcpy(envp);//provoque des leaks
-//	printf("debug2222222222222222222222222222222222222222222222\n");
+		data->cp_env = ft_tabcpy(envp);//provoque des leaks (frere c'est cte ligne je jure)
 	data->cp_exp = envp;
 	data->cp_exp = order_exp(data->cp_exp);
-//	dprintf(2, "debug3333333333333333333333333333333333333333333\n");//DEBUG
 	data->content_here = NULL;
-	data->pid = -1;
+//	data->pid = -1;
 	data->in_pipe = 0;
 	data->ret_err = 0;
-	data->val_home = get_home_value(data->cp_env);
-	data->pwd = get_env_value(data->cp_env, "PWD=");
-	data->oldpwd = get_env_value(data->cp_env, "PWD=");
-	data->oldpwd = ft_strjoin("OLDPWD=", data->oldpwd);
-	add_variable(data, data->oldpwd);
+//	data->val_home = get_home_value(data->cp_env);
+//	data->pwd = get_env_value(data->cp_env, "PWD=");
+//	data->oldpwd = get_env_value(data->cp_env, "PWD=");
+//	data->oldpwd = ft_strjoin("OLDPWD=", data->oldpwd);
+//	add_variable(data, data->oldpwd);
 	return (data);
 }

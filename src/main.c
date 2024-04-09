@@ -6,7 +6,7 @@
 /*   By: tpaufert <tpaufert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 10:23:44 by tpaufert          #+#    #+#             */
-/*   Updated: 2024/02/27 17:31:36 by hguillau         ###   ########.fr       */
+/*   Updated: 2024/04/05 15:58:22 by hguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,10 @@ int	main(int ac, char **av, char **envp)
 	(void) av;
 	data = init_struct(envp);
 	if (ac != 1)
+	{
+		ft_free_lst(data);
 		ft_error_msg("no arguments accepted");
+	}
 	if (!data)
 		ft_error_msg("Malloc Error");
 	ft_signaux();
@@ -62,7 +65,8 @@ int	main(int ac, char **av, char **envp)
 		if (!(data->prompt))
 		{
 			printf("exit\n");
-			exit(1);
+			exit(0);
+//			break ;
 		}
 		init_lexer(data);
 		if (!lexer_work(data))
@@ -71,6 +75,7 @@ int	main(int ac, char **av, char **envp)
 			{
 //				pour exit, il faut indiquer que cest la seule cmds
 //				data->nb_cmds = 1;
+//				print_list(data);
 				cmd = build_cmd_from_lexer(data);
 				redir_builtins_or_execve(data, cmd);
 				free_list(data->s_lex);
@@ -80,9 +85,10 @@ int	main(int ac, char **av, char **envp)
 		free(data->prompt);
 		free(cmd);
 	}
-	free(data->cp_env);
-	free(data->cp_exp);
+	free_2d_arr(data->cp_env);
+	free_2d_arr(data->cp_exp);
 	free(data->pwd);
 	free(data->oldpwd);
 	ft_free_lst(data);
+//	exit(0);
 }
