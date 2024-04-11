@@ -33,22 +33,27 @@ int	ft_lexer_alpha(t_data *data)
 
 	i = 0;
 	j = data->lexer_check;
-	while (data->prompt[j + i])
+	while (data->prompt[j + i] && data->prompt[data->lexer_check])
 	{
+//		printf("%c--", data->lexer_char);
 		if (data->lexer_char == '|' || data->lexer_char == '<'
 			|| data->lexer_char == '>' || !ft_isspace(data->lexer_char)
 			|| data->lexer_char == '\'' || data->lexer_char == '\"')
 			break ;
-		if (data->prompt[data->lexer_check] == '$')
+		if (data->prompt[i + j] == '$' && data->prompt[i + j + 1] && ft_isalnum(data->prompt[i + j + 1]))
 		{
-get_dollar(data);
+            i++;
+			get_dollar(data);
+			lexer_advance(data);
+//			break;
 		}
-		if (data->prompt[data->lexer_check] != '$'
-			&& data->prompt[data->lexer_check])
+		if (data->prompt[i + j] != '$' && data->prompt[i + j])
 		{
 			i++;
 			lexer_advance(data);
 		}
+		else
+			lexer_advance(data);
 	}
 	implement_list(data, TOKEN_STRING, i, j);
 	data->index_lexer++;

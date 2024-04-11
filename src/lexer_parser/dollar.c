@@ -71,6 +71,7 @@ int	ft_isinside(char c)
 	i = 0;
 	while (DOLLAR_STOP[i])
 	{
+//	printf("cara %c\n", DOLLAR_STOP[i]);
 		if (DOLLAR_STOP[i] == c)
 			return (0);
 		i++;
@@ -89,11 +90,15 @@ void	get_dollar(t_data *data)
 	i = data->lexer_check;
 	j = 0;
 	k = 1;
-    while (data->prompt[i + j]) {
-        j++;
-        if (!ft_isspace(data->prompt[i + j])
-            || !ft_isinside(data->prompt[i + j]))
-            break;
+//	printf("%s\n", data->prompt);
+    while (data->prompt[i + j])
+	{
+		j++;
+        if (!ft_isinside(data->prompt[i + j]) || !ft_isspace(data->prompt[i + j]))
+		{
+//			printf("------------------------");
+			break;
+		}
     }
     dol_value = malloc(sizeof(char) * (j + 1));
     if (!dol_value) {
@@ -102,6 +107,7 @@ void	get_dollar(t_data *data)
     }
     while (k < j) {
         dol_value[k - 1] = data->prompt[i + 1];
+//		printf("%c", data->prompt[i+1]);
         k++;
         i++;
     }
