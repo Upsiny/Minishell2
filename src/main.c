@@ -20,7 +20,8 @@ void	free_list(t_list *list)
 	{
 		tmp = list;
 		list = list->next;
-		free(tmp);
+		free(tmp->content);
+        free(tmp);
 	}
 }
 

@@ -50,6 +50,7 @@ void	replace_prompt(t_data *data, char *value, int start, int end)
 		j++;
 	}
 	last_part[i] = '\0';
+//    printf("%s\n", value);
 //    printf("val : %s\n", value);
 	new_prompt = ft_strjoin(first_part, value);
 	free(first_part);
@@ -88,34 +89,31 @@ void	get_dollar(t_data *data)
 	i = data->lexer_check;
 	j = 0;
 	k = 1;
-	while (data->prompt[i + j])
-	{
-		j++;
-		if (!ft_isspace(data->prompt[i + j])
-			|| !ft_isinside(data->prompt[i + j]))
-			break ;
-	}
-	dol_value = malloc(sizeof(char) * (j + 1));
-	if (!dol_value)
-	{
-		free(dol_value);
-		return ;
-	}
-	while (k < j)
-	{
-		dol_value[k - 1] = data->prompt[i + 1];
-		k++;
-		i++;
-	}
-	dol_value[k - 1] = '\0';
+    while (data->prompt[i + j]) {
+        j++;
+        if (!ft_isspace(data->prompt[i + j])
+            || !ft_isinside(data->prompt[i + j]))
+            break;
+    }
+    dol_value = malloc(sizeof(char) * (j + 1));
+    if (!dol_value) {
+        free(dol_value);
+        return;
+    }
+    while (k < j) {
+        dol_value[k - 1] = data->prompt[i + 1];
+        k++;
+        i++;
+    }
+    dol_value[k - 1] = '\0';
     split = search_in_env(data, dol_value);
-	if (!split)
-    {
+    if (!split) {
         free(split);
         return;
     }
-	replace_prompt(data, split, data->lexer_check - 1,
+//    printf("%s\n", split);
+	replace_prompt(data, split, data->lexer_check,
 		data->lexer_check + j);
 //    printf("%s\n", data->prompt);
-	free(split);
+    free(split);
 }

@@ -87,7 +87,7 @@ char	*search_in_env(t_data *shell, char *var)
     if (found)
         return (res);
     else
-        return (var);
+        return (append('$', var));
 }
 
 //char	*search_in_env(t_data *data, char *str)

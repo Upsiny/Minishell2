@@ -61,9 +61,8 @@ t_data	*init_struct(char **envp)
 	data->in_pipe = 0;
 	data->ret_err = 0;
 //	data->val_home = get_home_value(data->cp_env);
-//	data->pwd = get_env_value(data->cp_env, "PWD=");
-//	data->oldpwd = get_env_value(data->cp_env, "PWD=");
-//	data->oldpwd = ft_strjoin("OLDPWD=", data->oldpwd);
-//	add_variable(data, data->oldpwd);
+	data->pwd = get_env_value(data->cp_env, "PWD=");
+	data->oldpwd = get_env_value(data->cp_env, "PWD=");
+//    printf("%s\n", data->oldpwd);
 	return (data);
 }

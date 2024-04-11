@@ -69,5 +69,4 @@ void	echo_builtin(char **cmd)
 			i++;
 		}
 	}
-	return ;
 }
