@@ -63,9 +63,3 @@ char	*get_env_value(char **env, const char *var)
 	}
 	return (NULL);
 }
-
-void	get_pwd(t_data *data)
-{
-	data->pwd = get_env_value(data->cp_env, "PWD=");
-	data->oldpwd = get_env_value(data->cp_env, "OLDPWD=");
-}

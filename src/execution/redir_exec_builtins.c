@@ -121,7 +121,7 @@ void	redir_builtins_or_execve(t_data *data, char **args)
 		}
 		else if (full_cmd[1] == NULL || (full_cmd[1][0] == '-' && full_cmd[1][1] == '\0'))
 		{
-			full_cmd[1] = ft_split(get_env_value(data->cp_env, "OLDPWD="), '=')[1];
+			full_cmd[1] = ft_split(get_env_value(data->cp_env, "PWD="), '=')[1];
 			printf("%s\n", full_cmd[1]);
 		}
 		cd_builtin(data, full_cmd);
@@ -140,5 +140,5 @@ void	redir_builtins_or_execve(t_data *data, char **args)
 		unset_builtin(data, full_cmd);
 	else
 		ft_set_path_and_execve(data, full_cmd);
-//	free_2d_arr(full_cmd);
+    free(full_cmd);
 }

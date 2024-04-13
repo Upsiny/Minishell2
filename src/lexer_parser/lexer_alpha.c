@@ -6,7 +6,7 @@
 /*   By: tpaufert <tpaufert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 14:17:23 by tpaufert          #+#    #+#             */
-/*   Updated: 2024/04/10 10:47:50 by hguillau         ###   ########.fr       */
+/*   Updated: 2024/04/13 15:11:07 by hguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,17 @@ int	ft_lexer_alpha(t_data *data)
 	j = data->lexer_check;
 	while (data->prompt[j + i])
 	{
+//		printf("%c--", data->lexer_char);
 		if (data->lexer_char == '|' || data->lexer_char == '<'
 			|| data->lexer_char == '>' || !ft_isspace(data->lexer_char)
 			|| data->lexer_char == '\'' || data->lexer_char == '\"')
 			break ;
 		if (data->prompt[data->lexer_check] == '$')
 		{
-//			lexer_advance(data);
-//            i++;
+            i++;
 			get_dollar(data);
+//			lexer_advance(data);
+//			break;
 		}
 		if (data->prompt[data->lexer_check] != '$'
 			&& data->prompt[data->lexer_check])
@@ -51,6 +53,8 @@ int	ft_lexer_alpha(t_data *data)
 			i++;
 			lexer_advance(data);
 		}
+		//else
+		//	lexer_advance(data);
 	}
 	implement_list(data, TOKEN_STRING, i, j);
 	data->index_lexer++;

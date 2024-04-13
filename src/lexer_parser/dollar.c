@@ -6,7 +6,7 @@
 /*   By: tpaufert <tpaufert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 16:18:37 by hguillau          #+#    #+#             */
-/*   Updated: 2024/04/10 12:12:36 by hguillau         ###   ########.fr       */
+/*   Updated: 2024/04/13 14:57:43 by hguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	replace_prompt(t_data *data, char *value, int start, int end)
 		i++;
 	}
 	first_part[i] = '\0';
-	printf("first part : %s\n", first_part);
+//	printf("first part : %s\n", first_part);
 	i = 0;
 	while (data->prompt[j])
 	{
@@ -51,7 +51,7 @@ void	replace_prompt(t_data *data, char *value, int start, int end)
 		j++;
 	}
 	last_part[i] = '\0';
-	printf("last part : %s\n", last_part);
+//	printf("last part : %s\n", last_part);
 //    printf("val : %s\n", value);
 	new_prompt = ft_strjoin(first_part, value);
 	free(first_part);
@@ -72,6 +72,7 @@ int	ft_isinside(char c)
 	i = 0;
 	while (DOLLAR_STOP[i])
 	{
+//	printf("cara %c\n", DOLLAR_STOP[i]);
 		if (DOLLAR_STOP[i] == c)
 			return (0);
 		i++;
@@ -90,12 +91,13 @@ void	get_dollar(t_data *data)
 	i = data->lexer_check;
 	j = 0;
 	k = 1;
-	while (data->prompt[i + j])
+//	printf("%s\n", data->prompt);
+    while (data->prompt[i + j])
 	{
 		j++;
 		if (!ft_isspace(data->prompt[i + j])
 			|| !ft_isinside(data->prompt[i + j]))
-			break ;
+			return (lexer_advance(data)) ;
 	}
 	dol_value = malloc(sizeof(char) * (j + 1));
 	if (!dol_value)
@@ -110,19 +112,15 @@ void	get_dollar(t_data *data)
 		i++;
 	}
 	dol_value[k - 1] = '\0';
-	printf("dol_value = %s\n", dol_value);
     split = search_in_env(data, dol_value);
-	printf("split = %s\n", split);
 	if (!split)
     {
         free(split);
         return;
     }
-	replace_prompt(data, split, data->lexer_check - 1,
+	replace_prompt(data, split, data->lexer_check,
 		data->lexer_check + j);
-   printf("prompt %s\n", data->prompt);
 	if (!split)
 		free(split);
 	free(dol_value);
-//	printf("coucou\n");
 }

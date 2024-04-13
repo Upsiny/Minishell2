@@ -61,11 +61,11 @@ int	cd_go_arg(char *arg)
 
 void	cd_builtin(t_data *data, char **cmd)
 {
-	get_pwd(data);
+    data->pwd = get_env_value(data->cp_env, "PWD=");
 	if (cmd[1] == NULL || (cmd[1][0] == '~'
 			&& cmd[1][1] == '\0'))
 	{
-//		cd_go_home(data);
+		cd_go_home(data);
 //		change_value_env(data, cmd);
 //		change_value_exp(data, cmd);
 		free_ptr(data->pwd);
@@ -77,15 +77,15 @@ void	cd_builtin(t_data *data, char **cmd)
 	else if (cd_go_arg(cmd[1]) == 0)
 	{
 		data->ret_err = 1;
-		free_ptr(data->pwd);
-		free_ptr(data->oldpwd);
+//		free_ptr(data->pwd);
+//		free_ptr(data->oldpwd);
 	}
 	else
 	{
 		change_value_env(data, cmd);
 		change_value_exp(data, cmd);
-		free_ptr(data->pwd);
-		free_ptr(data->oldpwd);
+//		free_ptr(data->pwd);
+//		free_ptr(data->oldpwd);
 		data->ret_err = 0;
 	}
 }

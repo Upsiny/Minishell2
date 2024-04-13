@@ -107,7 +107,6 @@ void	cpy_value(char *name_var, char **str, char *new_val)
 	{
 		if (ft_strncmp(str[i], name_var, ft_strlen(name_var)) == 0)
 		{
-			free(str[i]);
 			str[i] = ft_strdup3(ret);
 			break ;
 		}

@@ -6,7 +6,7 @@
 /*   By: tpaufert <tpaufert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 10:23:44 by tpaufert          #+#    #+#             */
-/*   Updated: 2024/04/10 12:17:01 by hguillau         ###   ########.fr       */
+/*   Updated: 2024/04/13 14:44:10 by hguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ void	free_list(t_list *list)
 	{
 		tmp = list;
 		list = list->next;
-		free(tmp);
+	//	if (tmp->content != NULL)
+			free(tmp->content);
+        free(tmp);
 	}
 }
 

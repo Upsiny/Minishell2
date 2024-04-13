@@ -6,7 +6,7 @@
 /*   By: tpaufert <tpaufert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 14:05:13 by tpaufert          #+#    #+#             */
-/*   Updated: 2024/04/10 11:51:44 by hguillau         ###   ########.fr       */
+/*   Updated: 2024/04/13 12:19:21 by hguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,11 @@ char	*search_in_env(t_data *shell, char *var)
     if (found)
         return (res);
     else
+/*<<<<<<< HEAD
         return ("");
+=======*/
+        return (append('$', var));
+//>>>>>>> 60e8c05e8994a15d33b2bd1ac5b3eb71ab54a8e0
 }
 
 //char	*search_in_env(t_data *data, char *str)
