@@ -6,7 +6,7 @@
 /*   By: tpaufert <tpaufert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 16:31:09 by tpaufert          #+#    #+#             */
-/*   Updated: 2024/02/26 16:58:01 by hguillau         ###   ########.fr       */
+/*   Updated: 2024/04/20 16:57:07 by hguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	verif_cmd(char **all_path, char **pathcmd, char **cmd)
 		free(gd_path);
 		z++;
 	}
-	printf("je passe ici? \n");
+//	printf("je passe ici? \n");
 	if (z == i)
 //        aff_errcmd(cmd);
 		return(aff_errcmd(cmd));
@@ -56,7 +56,7 @@ int	aff_errcmd(char **cmd)
 		}
 		i++;
 	}
-	printf("je passe la\n");
+//	printf("je passe la\n");
 	ft_print_error_msg3("minishell: ", cmd[0], ": command not found\n");
 	return (127);
 }
@@ -97,6 +97,8 @@ void	ft_execve(t_data *data, char **all_path, char **pathcmd, char **cmd)
 	}
 }
 
+//why is pathcmd a char**? it might be logic, but don't look like it at first sight --theo
+//why is "" leaking while an other cmd as been done before? --helian
 void	ft_execution(t_data *data, char **all_path, char **pathcmd, char **cmd)
 {
 	if (access(cmd[0], X_OK) == 0)
@@ -112,7 +114,7 @@ void	ft_execution(t_data *data, char **all_path, char **pathcmd, char **cmd)
 	{
 		free_tab(all_path);
 		free_tab(pathcmd);
-		printf("kamoulox?\n");
+//		printf("kamoulox?\n");
 	//	exit(data->ret_err);
 	}
 	else
