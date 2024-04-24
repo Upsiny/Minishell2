@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_for_exec.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpaufert <tpaufert@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/08 16:27:14 by tpaufert          #+#    #+#             */
-/*   Updated: 2023/07/10 15:07:27 by tpaufert         ###   ########.fr       */
+/*   Created: 2024/04/24 10:21:13 by hguillau          #+#    #+#             */
+/*   Updated: 2024/04/24 15:38:06 by hguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	ft_set_path_and_execve(t_data *data, char **cmd)
 		ft_print_error_msg3("minishell: ", data->s_lex->content,
 			": No such file or directory\n");
 		free_tab(pathcmd);
+		free_tab(all_path);
 		return ;
 	}
 	ft_execution(data, all_path, pathcmd, cmd);

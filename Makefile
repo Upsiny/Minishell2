@@ -6,7 +6,7 @@
 #    By: tpaufert <tpaufert@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/31 11:43:52 by hguillau          #+#    #+#              #
-#    Updated: 2024/04/06 10:42:09 by hguillau         ###   ########.fr        #
+#    Updated: 2024/04/24 14:53:50 by hguillau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,13 +44,13 @@ SRCS    	=	src/main.c							\
 				src/lexer_parser/parsing.c			\
 				src/lexer_parser/free_lexer.c		\
 				src/lexer_parser/heredoc.c			\
-				src/expender/expender.c				\
 				src/utils/free.c					\
 				src/utils/ft_count_list.c			\
 				src/utils/ft_strndup.c				\
 				src/utils/tab_len.c					\
 				src/utils/ft_cpytab.c				\
 				src/utils/cmd_utils.c				\
+#				src/expender/expender.c				\#
 
 OBJS    	=	${SRCS:.c=.o}
 
