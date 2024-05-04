@@ -6,7 +6,7 @@
 /*   By: hguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:21:51 by hguillau          #+#    #+#             */
-/*   Updated: 2024/04/24 15:30:31 by hguillau         ###   ########.fr       */
+/*   Updated: 2024/05/04 13:53:44 by hguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ int	main(int ac, char **av, char **envp)
 	}
 	free_2d_arr(data->cp_env);
 	free_2d_arr(data->cp_exp);
-	free(data->pwd);
-	free(data->oldpwd);
+//	free(data->pwd);
+//	free(data->oldpwd);
 	ft_free_lst(data);
 //	exit(0);
 }

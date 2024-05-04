@@ -6,7 +6,7 @@
 /*   By: tpaufert <tpaufert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 11:47:27 by hguillau          #+#    #+#             */
-/*   Updated: 2024/05/03 17:46:16 by hguillau         ###   ########.fr       */
+/*   Updated: 2024/05/04 13:53:05 by hguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ typedef struct s_data
 //	bool	in_pipe;
 	int		nb_cmds;
 	char	*val_home;
-	char	*pwd;
-	char	*oldpwd;
+//	char	*pwd;
+//	char	*oldpwd;
 	int		ret_err;
 	char	*tmp_dollar;
 }	t_data;

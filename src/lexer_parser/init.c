@@ -6,7 +6,7 @@
 /*   By: hguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:30:43 by hguillau          #+#    #+#             */
-/*   Updated: 2024/05/02 18:57:47 by hguillau         ###   ########.fr       */
+/*   Updated: 2024/05/04 14:26:03 by hguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	**ft_tabcpy(char **tab)
 		tmp[i] = ft_strdup3(tab[i]);
 		i++;
 	}
-	tmp[j] = NULL;
+	tmp[i] = NULL;
 	return (tmp);
 }
 
@@ -61,8 +61,8 @@ t_data	*init_struct(char **envp)
 	data->in_pipe = 0;
 	data->ret_err = 0;
 //	data->val_home = get_home_value(data->cp_env);
-	data->pwd = get_env_value(data->cp_env, "PWD=");
-	data->oldpwd = get_env_value(data->cp_env, "PWD=");
+//	data->pwd = get_env_value(data->cp_env, "PWD=");
+//	data->oldpwd = get_env_value(data->cp_env, "PWD=");
 //    printf("%s\n", data->oldpwd);
 	return (data);
 }

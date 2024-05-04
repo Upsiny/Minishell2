@@ -6,7 +6,7 @@
 /*   By: hguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:24:33 by hguillau          #+#    #+#             */
-/*   Updated: 2024/05/03 17:57:13 by hguillau         ###   ########.fr       */
+/*   Updated: 2024/05/04 15:00:11 by hguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	add_variable(t_data *data, char *variable)
 	i = 0;
 	while (data->cp_env[i] != NULL)
 		i++;
+	free_2d_arr(data->cp_env);
 	data->cp_env = new_env;
 }
 
