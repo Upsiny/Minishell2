@@ -6,7 +6,7 @@
 /*   By: tpaufert <tpaufert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 11:47:27 by hguillau          #+#    #+#             */
-/*   Updated: 2023/07/10 15:22:32 by tpaufert         ###   ########.fr       */
+/*   Updated: 2024/05/03 17:46:16 by hguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,7 @@ void	add_reponame_exp(t_data *data, char *repo);
 void	cpy_value(char *name_var, char **str, char *new_val);
 char	*join_var(char *str1, char *new_val);
 void	cd_go_home(t_data *data);
+void	update_variable(char **env, char *variable);
 
 //////////// EXECUTION /////////////
 

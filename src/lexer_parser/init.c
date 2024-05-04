@@ -6,7 +6,7 @@
 /*   By: hguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:30:43 by hguillau          #+#    #+#             */
-/*   Updated: 2024/04/24 10:30:45 by hguillau         ###   ########.fr       */
+/*   Updated: 2024/05/02 18:57:47 by hguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_data	*init_struct(char **envp)
 	if (envp[0] == NULL)
 		printf("No envp. get only new pwd and the old.\n");
 	else
-		data->cp_env = ft_tabcpy(envp);//provoque des leaks (frere c'est cte ligne je jure)
+		data->cp_env = ft_tabcpy(envp);
 	data->cp_exp = envp;
 	data->cp_exp = order_exp(data->cp_exp);
 	data->content_here = NULL;

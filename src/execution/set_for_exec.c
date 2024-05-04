@@ -6,7 +6,7 @@
 /*   By: hguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:21:13 by hguillau          #+#    #+#             */
-/*   Updated: 2024/04/24 15:38:06 by hguillau         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:43:18 by hguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	ft_set_path_and_execve(t_data *data, char **cmd)
 		ft_print_error_msg3("minishell: ", data->s_lex->content,
 			": No such file or directory\n");
 		free_tab(pathcmd);
-		free_tab(all_path);
+		free_tab(all_path); //used to remove leak n $ = NULL
 		return ;
 	}
 	ft_execution(data, all_path, pathcmd, cmd);

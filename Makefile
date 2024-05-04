@@ -6,7 +6,7 @@
 #    By: tpaufert <tpaufert@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/31 11:43:52 by hguillau          #+#    #+#              #
-#    Updated: 2024/04/24 14:53:50 by hguillau         ###   ########.fr        #
+#    Updated: 2024/04/30 12:59:23 by hguillau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,8 @@ SRCS    	=	src/main.c							\
 				src/signaux/signaux.c				\
 				src/errors/error.c					\
 				src/errors/printf_error.c			\
-				src/builtins/pwd.c					\
 				src/builtins/cd.c					\
-				src/builtins/cd_utils.c				\
-				src/builtins/cd_utils2.c			\
-				src/builtins/cd_utils3.c			\
-				src/builtins/cd_utils4.c			\
-				src/builtins/cd_utils5.c			\
+				src/builtins/pwd.c					\
 				src/builtins/echo.c					\
 				src/builtins/exit.c					\
 				src/builtins/env.c					\
@@ -50,6 +45,7 @@ SRCS    	=	src/main.c							\
 				src/utils/tab_len.c					\
 				src/utils/ft_cpytab.c				\
 				src/utils/cmd_utils.c				\
+				src/utils/get_in_env.c				\
 #				src/expender/expender.c				\#
 
 OBJS    	=	${SRCS:.c=.o}

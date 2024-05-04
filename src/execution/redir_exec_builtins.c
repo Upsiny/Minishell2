@@ -6,7 +6,7 @@
 /*   By: hguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:26:26 by hguillau          #+#    #+#             */
-/*   Updated: 2024/04/24 10:26:27 by hguillau         ###   ########.fr       */
+/*   Updated: 2024/05/02 19:24:50 by hguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,12 +103,12 @@ char	**verif_cmd_struct(char **cmd)
 void	redir_builtins_or_execve(t_data *data, char **args)
 {
 	char	**full_cmd;
-	char	*tmp_cmd;
+//	char	*tmp_cmd;
 
 	full_cmd = add_cmd_before_args(data, args);
 	if (!(data->s_lex))
 		return ;
-	if (ft_strcmp(data->s_lex->content, "cd") == 0)
+/*	if (ft_strcmp(data->s_lex->content, "cd") == 0 || ft_strlen(args[0]) == ft_strlen("99999999999999999999999999999999999"))
 	{
 		if (full_cmd[1] == NULL || (full_cmd[1][0] == '~' && full_cmd[1][1] == '\0'))
 			full_cmd[1] = get_home_value(data->cp_env);
@@ -125,7 +125,9 @@ void	redir_builtins_or_execve(t_data *data, char **args)
 			printf("%s\n", full_cmd[1]);
 		}
 		cd_builtin(data, full_cmd);
-	}
+	}*/
+	if (ft_strcmp(data->s_lex->content, "cd") == 0)
+		cd_builtin(data, full_cmd);
 	else if (ft_strcmp(data->s_lex->content, "pwd") == 0)
         pwd_builtin(data, full_cmd);
 	else if (ft_strcmp(data->s_lex->content, "exit") == 0)
