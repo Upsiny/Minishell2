@@ -6,7 +6,7 @@
 /*   By: hguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:24:33 by hguillau          #+#    #+#             */
-/*   Updated: 2024/05/04 15:00:11 by hguillau         ###   ########.fr       */
+/*   Updated: 2024/05/08 13:41:05 by hguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ void	update_variable(char **env, char *variable)
 
 	i = 0;
 	j = 0;
+/*	if (!variable_exists(env, variable))
+	{
+		add_variable(data, variable);
+		return ;
+	}*/
 	while (variable[j] != '=' && variable[j] != '\0')
 		j++;
 	while (env[i])
@@ -60,6 +65,22 @@ void	add_variable(t_data *data, char *variable)
 	char	**new_env;
 	int		i;
 
+	if (!data->cp_env)
+	{
+		new_env = ft_calloc(sizeof(char *), 2);
+		if (!new_env)
+		{
+			free_2d_arr(new_env);
+			return ;
+		}
+		new_env[0] = ft_strdup3(variable);
+	//	new_env[1] = NULL;
+//		dprintf(2, "new env: %s ; %s\n", new_env[0], new_env[1]);//DEBUG
+	//	free(data->cp_env);
+		data->cp_env = new_env;
+//		dprintf(2, "new env: %s ; %s\n", data->cp_env[0], data->cp_env[1]);//DEBUG
+		return ;
+	}
 	i = 0;
 	count = count_variables(data->cp_env);
 	new_env = malloc(sizeof(char *) * (count + 2));
@@ -106,6 +127,8 @@ void	export_builtin2(t_data *data, char **cmd)
 				cmd[1], "': not a valid identifier\n");
 			data->ret_err = 1;
 		}
+		else if (!data->cp_env)
+			add_variable(data, cmd[1]);
 		else if (variable_exists(data->cp_env, cmd[i]))
 			update_variable(data->cp_env, cmd[i]);
 		else
@@ -116,6 +139,9 @@ void	export_builtin2(t_data *data, char **cmd)
 
 void	export_builtin(t_data *data, char **cmd)
 {
+//	int	i;
+
+//	i = 0;
 	if (!(cmd[1]))
 		print_export(data->cp_exp);
 	else
@@ -125,4 +151,9 @@ void	export_builtin(t_data *data, char **cmd)
 		data->cp_exp = order_exp(data->cp_env);
 		data->ret_err = 0;
 	}
+//	while (data->cp_env[i])//debug
+//	{
+//		printf("env end builtin = %s\n",data->cp_env[i]);
+//		i++;
+//	}
 }

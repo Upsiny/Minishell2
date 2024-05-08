@@ -6,7 +6,7 @@
 /*   By: hguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:21:51 by hguillau          #+#    #+#             */
-/*   Updated: 2024/05/04 13:53:44 by hguillau         ###   ########.fr       */
+/*   Updated: 2024/05/08 11:17:12 by hguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	main(int ac, char **av, char **envp)
 {
 	t_data	*data;
 	char	**cmd;
+//	int	i = 0; //debug
 
 	(void) av;
 	data = init_struct(envp);
@@ -62,7 +63,7 @@ int	main(int ac, char **av, char **envp)
 	while (1)
 	{
 		data->pid = -1;
-		data->prompt = readline("minishell de mort (҂◡_◡) > ");
+		data->prompt = readline("Minishell Lovecraftien (҂◡_◡) > ");
 		add_history(data->prompt);
 		if (!(data->prompt))
 		{
@@ -86,6 +87,11 @@ int	main(int ac, char **av, char **envp)
 		free(data->content_here);
 		free(data->prompt);
 		free(cmd);
+//		while (data->cp_env[i] || i == 0){ //debug
+//			printf("env = %s\n ptr = %p\n", data->cp_env[i], data->cp_env[i]);
+//			i++;}
+		//debug
+//		i = 0;
 	}
 	free_2d_arr(data->cp_env);
 	free_2d_arr(data->cp_exp);

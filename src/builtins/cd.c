@@ -6,7 +6,7 @@
 /*   By: hguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:22:15 by hguillau          #+#    #+#             */
-/*   Updated: 2024/05/04 14:44:04 by hguillau         ###   ########.fr       */
+/*   Updated: 2024/05/08 13:53:11 by hguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,25 +26,37 @@ void	ft_new_pwd(t_data *data) // actualise le oldpwd et le pwd
 		return ;
 	}
 	send_pwd = ft_strjoin("PWD=", tmp_pwd);
-	update_variable(data->cp_env, send_pwd);
+	if (variable_exists(data->cp_env, "PWD"))
+		update_variable(data->cp_env, send_pwd);
+	else
+		add_variable(data, send_pwd);
 	free(tmp_pwd);
 	free(send_pwd);
 }
 
-int	ft_chdir(char *path, char *str, t_data *data) // fait si realisable, le transfert dans le dossier cible
+int	ft_chdir(char *path, t_data *data) // fait si realisable, le transfert dans le dossier cible
 {
+	char	*tmp_pwd;
 	char	*tmp_opwd;
 
+	tmp_pwd = getcwd(NULL, 0);
 	if (chdir(path) != 0)
 	{ // pense a secure les print_error_msg
-		ft_print_error_msg3("minishell: cd: ", str/*?str:"n/a"*/, ": No such file or directory\n");
+		ft_print_error_msg3("minishell: cd: ", path, ": No such file or directory\n");
 		data->ret_err = 1;
 		return (1);
 	}
-	tmp_opwd= ft_strjoin("OLD", get_env_value(data->cp_env, "PWD="));
-	update_variable(data->cp_env, tmp_opwd);
-	ft_new_pwd(data);
-	free(tmp_opwd);
+	if (data->cp_env)
+	{
+		tmp_opwd = ft_strjoin("OLDPWD", tmp_pwd);
+		if (variable_exists(data->cp_env, "OLDPWD"))
+			update_variable(data->cp_env, tmp_opwd);
+		else
+			add_variable(data, tmp_opwd);
+		ft_new_pwd(data);
+		free(tmp_opwd);
+	}
+	free(tmp_pwd);
 	return (0);
 }
 
@@ -68,8 +80,8 @@ void	cd_builtin(t_data *data, char **cmd)
 			path++;
 			i--;
 		}
-		printf("path = %s\n", path);
-		ft_chdir(path, cmd[1], data);
+	//	printf("path = %s\n", path);
+		ft_chdir(path, data);
 	}
 	else if (cmd[2])
 	{
@@ -78,5 +90,5 @@ void	cd_builtin(t_data *data, char **cmd)
 		return ;
 	}
 	else
-		ft_chdir(cmd[1], cmd[1], data);
+		ft_chdir(cmd[1], data);
 }

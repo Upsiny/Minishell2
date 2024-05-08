@@ -6,7 +6,7 @@
 /*   By: hguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:26:26 by hguillau          #+#    #+#             */
-/*   Updated: 2024/05/02 19:24:50 by hguillau         ###   ########.fr       */
+/*   Updated: 2024/05/08 10:45:04 by hguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,10 +126,12 @@ void	redir_builtins_or_execve(t_data *data, char **args)
 		}
 		cd_builtin(data, full_cmd);
 	}*/
+	if (!data)
+		printf("hello\n");
 	if (ft_strcmp(data->s_lex->content, "cd") == 0)
 		cd_builtin(data, full_cmd);
 	else if (ft_strcmp(data->s_lex->content, "pwd") == 0)
-        pwd_builtin(data, full_cmd);
+        pwd_builtin(data);
 	else if (ft_strcmp(data->s_lex->content, "exit") == 0)
 		exit_builtin(data, full_cmd);
 	else if (ft_strcmp(data->s_lex->content, "echo") == 0)

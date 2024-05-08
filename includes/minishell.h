@@ -6,7 +6,7 @@
 /*   By: tpaufert <tpaufert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 11:47:27 by hguillau          #+#    #+#             */
-/*   Updated: 2024/05/04 13:53:05 by hguillau         ###   ########.fr       */
+/*   Updated: 2024/05/08 14:31:58 by hguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct s_data
 //	char	*oldpwd;
 	int		ret_err;
 	char	*tmp_dollar;
+	bool	boold;
 }	t_data;
 
 //////////// Lexer_Parser //////////////////
@@ -114,7 +115,7 @@ void	ft_print_error_msg3(char *s1, char *s2, char *s3);
 //////////// BUILTINS //////////////
 
 int		ft_nb_slash(char *str);
-void	pwd_builtin(t_data *data, char **cmd);
+void	pwd_builtin(t_data *data);
 char	*get_home_value(char **cp_env);
 void	get_pwd(t_data *data);
 void	cd_builtin(t_data *data, char **cmd);
@@ -151,6 +152,8 @@ void	cpy_value(char *name_var, char **str, char *new_val);
 char	*join_var(char *str1, char *new_val);
 void	cd_go_home(t_data *data);
 void	update_variable(char **env, char *variable);
+int		variable_exists(char **env, char *variable);
+void	add_variable(t_data *data, char *variable);
 
 //////////// EXECUTION /////////////
 

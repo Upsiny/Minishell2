@@ -6,7 +6,7 @@
 /*   By: hguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:21:13 by hguillau          #+#    #+#             */
-/*   Updated: 2024/04/24 15:43:18 by hguillau         ###   ########.fr       */
+/*   Updated: 2024/05/08 11:16:11 by hguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*recup_pathexec(t_data *data)
 	int	i;
 
 	i = 0;
+	if (!data->cp_env || !data->cp_env[i])
+		return (NULL);
 	while (data->cp_env[i])
 	{
 		if (ft_strncmp(data->cp_env[i], "PATH=", 5) == 0)
