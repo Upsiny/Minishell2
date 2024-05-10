@@ -6,7 +6,7 @@
 /*   By: hguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:30:43 by hguillau          #+#    #+#             */
-/*   Updated: 2024/05/08 14:33:17 by hguillau         ###   ########.fr       */
+/*   Updated: 2024/05/09 09:28:07 by hguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ t_data	*init_struct(char **envp)
 	data->cp_exp = envp;
 	data->cp_exp = order_exp(data->cp_exp);
 	data->content_here = NULL;
-	data->boold = 0;
+	data->bdq = 0;
+	data->bsq = 0;
 //	data->pid = -1;
 	data->in_pipe = 0;
 	data->ret_err = 0;

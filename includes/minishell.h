@@ -6,7 +6,7 @@
 /*   By: tpaufert <tpaufert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 11:47:27 by hguillau          #+#    #+#             */
-/*   Updated: 2024/05/08 14:31:58 by hguillau         ###   ########.fr       */
+/*   Updated: 2024/05/10 10:58:12 by hguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ typedef struct s_data
 //	char	*oldpwd;
 	int		ret_err;
 	char	*tmp_dollar;
-	bool	boold;
+	bool	bdq;
+	bool	bsq;
 }	t_data;
 
 //////////// Lexer_Parser //////////////////
@@ -98,6 +99,7 @@ void	implement_list(t_data *data, int type, int index, int start);
 int		ft_check_lst(t_data *data);
 void	ft_free_lst(t_data *data);
 void	ft_heredoc(t_list *tmp, t_data *data);
+void	replace_prompt(t_data *data, char *value, int start, int end);
 
 //////////// Signaux ////////////////
 
