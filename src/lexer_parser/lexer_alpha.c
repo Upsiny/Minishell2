@@ -6,7 +6,7 @@
 /*   By: hguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:30:56 by hguillau          #+#    #+#             */
-/*   Updated: 2024/05/10 12:12:40 by hguillau         ###   ########.fr       */
+/*   Updated: 2024/05/10 13:34:42 by hguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ int	ft_lexer_alpha(t_data *data)
 
 	i = 0;
 	j = data->lexer_check;
-	while (data->prompt && data->prompt[j + i])
+	while (data->prompt && data->prompt[j + i]/* && data->prompt[data->lexer_check]*/)
 	{
 		if (data->lexer_char == '|' || data->lexer_char == '<'
 			|| data->lexer_char == '>' || !ft_isspace(data->lexer_char)
-		/*	|| data->lexer_char == '\'' || data->lexer_char == '\"'*/)
+/*			|| data->lexer_char == '\'' || data->lexer_char == '\"'*/)
 			break ;
 		if (data->lexer_char == '\'' || data->lexer_char == '\"') // debut quotes
 		{
@@ -66,14 +66,16 @@ int	ft_lexer_alpha(t_data *data)
 					i++;
 					lexer_advance(data);
 				}
+		//		printf("data->lexer_check = %c\n", data->prompt[data->lexer_check]);
 				replace_prompt(data, NULL, data->lexer_check, data->lexer_check + 1);
 				data->bdq = 0;
 				data->bsq = 0;
 			} // fin du else
-		}// fin quotes
+		}// fin quotes 
 		if (data->prompt[data->lexer_check] == '$')
 		{
 			get_dollar(data);
+//			lexer_advance(data);
 			if (!data->prompt)
 				return (1);
 		}
@@ -86,5 +88,6 @@ int	ft_lexer_alpha(t_data *data)
 	}
 	implement_list(data, TOKEN_STRING, i, j);
 	data->index_lexer++;
+//	printf("prompt = %s\n", data->prompt);
 	return (0);
 }

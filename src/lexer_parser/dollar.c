@@ -6,7 +6,7 @@
 /*   By: hguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:30:18 by hguillau          #+#    #+#             */
-/*   Updated: 2024/05/10 11:01:14 by hguillau         ###   ########.fr       */
+/*   Updated: 2024/05/10 13:34:23 by hguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,9 @@ void	get_dollar(t_data *data)
     while (data->prompt[i + j])
 	{
 		j++; //refaire les conditions ci-dessous
-		if (!ft_isspace(data->prompt[i + j]) || (data->prompt[i + j] == '\"' 
-			&& data->bsq != 1))
+		if (!ft_isspace(data->prompt[i + j]))
+			break ;
+		if ((!ft_isinside(data->prompt[i + j]) && data->bdq == 1))
 			break ;
 		if	(!ft_isinside(data->prompt[i + j]))
 			return (lexer_advance(data)) ;

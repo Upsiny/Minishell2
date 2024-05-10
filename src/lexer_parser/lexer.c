@@ -6,7 +6,7 @@
 /*   By: hguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:31:07 by hguillau          #+#    #+#             */
-/*   Updated: 2024/05/10 10:59:57 by hguillau         ###   ########.fr       */
+/*   Updated: 2024/05/10 13:30:12 by hguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	lexer_work(t_data *data)
 {
 	while (data->lexer_check < (int)ft_strlen(data->prompt))
 	{
-/*		if (data->lexer_char == '\"' || data->lexer_char == '\'')
+	/*	if (data->lexer_char == '\"' || data->lexer_char == '\'')
 		{
 			if (ft_lexer_quotes(data))
 				return (1);
