@@ -6,7 +6,7 @@
 /*   By: hguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:31:07 by hguillau          #+#    #+#             */
-/*   Updated: 2024/05/10 13:30:12 by hguillau         ###   ########.fr       */
+/*   Updated: 2024/05/16 13:42:56 by hguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	lexer_work(t_data *data)
 			lexer_advance(data);
 		else if (data->lexer_char)
 		{
-			if (ft_lexer_alpha(data))
+			if (ft_lexer_str(data))
 				return (1);
 		}
 	}

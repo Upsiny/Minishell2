@@ -6,7 +6,7 @@
 /*   By: hguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:30:18 by hguillau          #+#    #+#             */
-/*   Updated: 2024/05/10 13:34:23 by hguillau         ###   ########.fr       */
+/*   Updated: 2024/05/16 11:32:19 by hguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	ft_isinside(char c)
 	return (1);
 }
 
-void	get_dollar(t_data *data)
+void	get_dollar(t_data *data) // a refaire
 {
 	int		i;
 	int		j;
@@ -93,10 +93,10 @@ void	get_dollar(t_data *data)
 		j++; //refaire les conditions ci-dessous
 		if (!ft_isspace(data->prompt[i + j]))
 			break ;
-		if ((!ft_isinside(data->prompt[i + j]) && data->bdq == 1))
+		if ((!ft_isinside(data->prompt[i + j])/* && data->bdq == 1)*/))
 			break ;
-		if	(!ft_isinside(data->prompt[i + j]))
-			return (lexer_advance(data)) ;
+/*		if	(!ft_isinside(data->prompt[i + j]))
+			return (lexer_advance(data)) ;*/
 	}
 	dol_value = malloc(sizeof(char) * (j + 1));
 //	printf("dol_value = %s\n", dol_value);

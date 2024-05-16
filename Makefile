@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tpaufert <tpaufert@student.42.fr>          +#+  +:+       +#+         #
+#    By: hguillau <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/03/31 11:43:52 by hguillau          #+#    #+#              #
-#    Updated: 2024/04/30 12:59:23 by hguillau         ###   ########.fr        #
+#    Created: 2024/05/16 14:35:37 by hguillau          #+#    #+#              #
+#    Updated: 2024/05/16 14:36:12 by hguillau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,8 +31,6 @@ SRCS    	=	src/main.c							\
 				src/lexer_parser/init.c				\
 				src/lexer_parser/utils.c			\
 				src/lexer_parser/lexer.c			\
-				src/lexer_parser/lexer_alpha.c		\
-				src/lexer_parser/quotes.c			\
 				src/lexer_parser/redir.c			\
 				src/lexer_parser/lexer_pipe.c		\
 				src/lexer_parser/dollar.c			\
@@ -46,6 +44,9 @@ SRCS    	=	src/main.c							\
 				src/utils/ft_cpytab.c				\
 				src/utils/cmd_utils.c				\
 				src/utils/get_in_env.c				\
+				src/lexer_parser/lexer_str.c		\
+#				src/lexer_parser/lexer_alpha.c		\
+#				src/lexer_parser/quotes.c			\
 #				src/expender/expender.c				\#
 
 OBJS    	=	${SRCS:.c=.o}

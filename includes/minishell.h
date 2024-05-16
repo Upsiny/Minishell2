@@ -6,7 +6,7 @@
 /*   By: tpaufert <tpaufert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 11:47:27 by hguillau          #+#    #+#             */
-/*   Updated: 2024/05/16 08:43:09 by hguillau         ###   ########.fr       */
+/*   Updated: 2024/05/16 13:41:13 by hguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ int		ft_check_lst(t_data *data);
 void	ft_free_lst(t_data *data);
 void	ft_heredoc(t_list *tmp, t_data *data);
 void	replace_prompt(t_data *data, char *value, int start, int end);
+int		ft_lexer_str(t_data *data); // new lexer alpha
 
 //////////// Signaux ////////////////
 

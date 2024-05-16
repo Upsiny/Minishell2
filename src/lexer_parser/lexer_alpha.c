@@ -6,7 +6,7 @@
 /*   By: hguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:30:56 by hguillau          #+#    #+#             */
-/*   Updated: 2024/05/10 13:34:42 by hguillau         ###   ########.fr       */
+/*   Updated: 2024/05/13 13:39:30 by hguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,20 @@ int	ft_lexer_alpha(t_data *data)
 			//avancer de quote et check pour le dollar | remettre les bool a 0
 			{
 				oc = data->lexer_char;
-				replace_prompt(data, NULL, i, i + 1);
+			//	printf("data->lexer_check = %d\n", data->lexer_check);
+			//	printf("data->lexer_char = %c\n", data->prompt[data->lexer_check]);
+				replace_prompt(data, NULL, data->lexer_check, data->lexer_check + 1);
 				data->lexer_char = data->prompt[data->lexer_check];
 				while (data->prompt[data->lexer_check] != oc)
 				{
 					if (data->prompt[data->lexer_check] == '$' && data->bdq == 1)
 						get_dollar(data);
-					i++;
 					lexer_advance(data);
+					i++;
 				}
-		//		printf("data->lexer_check = %c\n", data->prompt[data->lexer_check]);
+			//	printf("prompt now = %s\n", data->prompt);
+			//	printf("data->lexer_check = %d\n", data->lexer_check);
+			//	printf("data->lexer_char = %c\n", data->prompt[data->lexer_check]);
 				replace_prompt(data, NULL, data->lexer_check, data->lexer_check + 1);
 				data->bdq = 0;
 				data->bsq = 0;

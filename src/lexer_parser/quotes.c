@@ -6,12 +6,12 @@
 /*   By: hguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:32:02 by hguillau          #+#    #+#             */
-/*   Updated: 2024/05/10 11:00:55 by hguillau         ###   ########.fr       */
+/*   Updated: 2024/05/16 13:42:38 by hguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
+/*
 int	ft_check_endquote(t_data *data, char c)
 {
 	int	i;
@@ -28,7 +28,7 @@ int	ft_check_endquote(t_data *data, char c)
 	}
 	return (0);
 }
-
+*/
 /*
 int	ft_check_endquote(t_data *data, char c, int	i, int j)
 {
@@ -48,7 +48,7 @@ int	ft_check_endquote(t_data *data, char c, int	i, int j)
 	}
 	return (0);
 }
-*/
+*//*
 int	ft_simple_quotes(t_data *data)
 {
 	int	i;
@@ -83,8 +83,8 @@ int	ft_double_quotes(t_data *data)
 		lexer_advance(data);
 		while (data->prompt[data->lexer_check] != '\"')
 		{
-			if (data->prompt[data->lexer_check] == '$'/*
-				&& data->prompt[data->lexer_check - 1] != '$'*/)
+			if (data->prompt[data->lexer_check] == '$'*//*
+				&& data->prompt[data->lexer_check - 1] != '$'*//*)
 			{
 				data->bdq = 1;
 				get_dollar(data);
@@ -119,4 +119,4 @@ int	ft_lexer_quotes(t_data *data)
 	}
 	data->index_lexer++;
 	return (0);
-}
+}*/
