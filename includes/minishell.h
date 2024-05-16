@@ -6,7 +6,7 @@
 /*   By: tpaufert <tpaufert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 11:47:27 by hguillau          #+#    #+#             */
-/*   Updated: 2024/05/10 10:58:12 by hguillau         ###   ########.fr       */
+/*   Updated: 2024/05/16 08:43:09 by hguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,27 +59,27 @@ typedef struct s_cmd
 
 typedef struct s_data
 {
-	t_cmd	*st_cmd;
+	t_cmd	*st_cmd; // struct des commandes
 	pid_t	pid;
-	char	*prompt;
-	char	*content_here;
-	char	**cp_env;
+	char	*prompt; //le prompt qu'on envoie au minishell
+	char	*content_here; //le contenue des heredocs
+	char	**cp_env; //copie de l'env pour notre minishell
 	char	**cp_exp;
-	t_list	*s_lex;
-	int		lexer_check;
-	char	lexer_char;
-	int		index_lexer;
+	t_list	*s_lex; //structure du lexer
+	int		lexer_check; // index du char que l'on regarde dans le prompt pour le lexer
+	char	lexer_char; // char que l'on regarde dans le prompt pour le lexer
+	int		index_lexer; // index pour le lexer (ou en est-on au niveau de la list)
 	int		index_cmd;
-	int		in_pipe;
+	int		in_pipe; // sommes nous dans un pipe?
 //	bool	in_pipe;
 	int		nb_cmds;
-	char	*val_home;
+	char	*val_home; // value de l'home dans l'env
 //	char	*pwd;
 //	char	*oldpwd;
-	int		ret_err;
-	char	*tmp_dollar;
-	bool	bdq;
-	bool	bsq;
+	int		ret_err; // le retour d'erreur du projet / a mettre en variable globale pour envoyer aux signaux
+	char	*tmp_dollar; //la value du dollar pour l'expender
+	bool	bdq; //booleen pour dire que nous sommes en double quotes / lexer
+	bool	bsq; //booleen pour dire que nous sommes dans une single quote / lexer
 }	t_data;
 
 //////////// Lexer_Parser //////////////////
